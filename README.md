@@ -1,4 +1,4 @@
-# PhD Repository: Convolutional Neural Network
+# Repository: Repository of the book
 
 Leandro D. Medus  
 University of Valencia  
