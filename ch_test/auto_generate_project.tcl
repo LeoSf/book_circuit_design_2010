@@ -139,23 +139,12 @@ if {[string equal [get_filesets -quiet sources_1] ""]} {
   create_fileset -srcset sources_1
 }
 
+#add_files -norecurse "./sub3.vhd"\
+
 # Set 'sources_1' fileset object
 set obj [get_filesets sources_1]
 # Import local files from the original project
-set files [list \
- [file normalize "${proj_dir}/src/${_xil_module_name_}.vhd" ]\
-]
-set imported_files [import_files -fileset sources_1 $files]
-
-# Set 'sources_1' fileset file properties for local files
-set file "src/${_xil_module_name_}.vhd"
-set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
-set_property -name "file_type" -value "VHDL" -objects $file_obj
-
-# Set 'sources_1' fileset properties
-# set obj [get_filesets sources_1]
-# set_property -name "top" -value "flip_flop" -objects $obj
-
+add_files -norecurse $proj_dir/src/${_xil_module_name_}.vhd
 
 # ----------
 
@@ -164,24 +153,4 @@ if {[string equal [get_filesets -quiet sim_1] ""]} {
   create_fileset -simset sim_1
 }
 
-# Set 'sim_1' fileset object
-set obj [get_filesets sim_1]
-# Import local files from the original project
-set files [list \
- [file normalize "${proj_dir}/src/tb_${_xil_module_name_}.vhd" ]\
-]
-set imported_files [import_files -fileset sim_1 $files]
-
-# Set 'sim_1' fileset file properties for remote files
-# None
-
-# Set 'sim_1' fileset file properties for local files
-set file "src/tb_${_xil_module_name_}.vhd"
-set file_obj [get_files -of_objects [get_filesets sim_1] [list "*$file"]]
-set_property -name "file_type" -value "VHDL" -objects $file_obj
-
-
-# Set 'sim_1' fileset properties
-#set obj [get_filesets sim_1]
-#set_property -name "top" -value "tb_dflipflop" -objects $obj
-#set_property -name "top_lib" -value "xil_defaultlib" -objects $obj
+add_files -norecurse $proj_dir/src/tb_${_xil_module_name_}.vhd
