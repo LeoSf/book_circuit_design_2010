@@ -102,4 +102,4 @@
 *.cache/
 *webtalk
 
-*/*.ip_user_files/README.txt
+*/*/*.ip_user_files/README.txt
