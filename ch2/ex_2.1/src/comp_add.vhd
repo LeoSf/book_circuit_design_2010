@@ -25,10 +25,10 @@ use ieee.std_logic_1164.all;
 
 entity comp_add is
     port(
-        -- input signals
+        -- input ports
         a       : in integer range 0 to 7;
         b       : in integer range 0 to 7;
-        -- output signals
+        -- output ports
         comp    : out std_logic;
         sum     : out integer range 0 to 15
     );

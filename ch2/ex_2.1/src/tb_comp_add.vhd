@@ -32,10 +32,10 @@ architecture behavioral of tb_comp_add is
     -- component declarations
     component comp_add
         port(
-            -- input signals
+            -- input ports
             a       : in integer range 0 to 7;
             b       : in integer range 0 to 7;
-            -- output signals
+            -- output ports
             comp    : out std_logic;
             sum     : out integer range 0 to 15
         );
@@ -43,12 +43,12 @@ architecture behavioral of tb_comp_add is
 
     -- clock period definition
     constant c_CLK_PERIOD : time := 10 ns;
-    --Inputs
+    --Input signals
     signal s_clk    : std_logic := '0';
     signal s_rst_n  : std_logic := '0';
     signal s_a      : integer := 4;
     signal s_b      : integer := 5;
-    --Outputs
+    --Output signals
     signal s_a_gt_b : std_logic;
     signal s_sum    : integer;
 
