@@ -3,8 +3,8 @@
 -- Engineer:            Leandro D. Medus
 --
 -- Create Date:         18:17:00 08/05/2020 (dd/mm/yyyy)
--- Design Name:         Unsigned/Signed Multiplier #1
--- Module Name:         multiplier_1 - Behavioral
+-- Design Name:         Unsigned Multiplier #1 Testbench
+-- Module Name:         tb_multiplier_1u - Behavioral
 -- Project Name:        ex_3.2
 -- Target Devices:      Basys 3
 -- Tool versions:       Vivado 2019.1
@@ -23,14 +23,14 @@ library ieee;
     use ieee.std_logic_1164.all;
     use ieee.numeric_std.all;
 
-entity tb_multiplier_1 is
-end tb_multiplier_1;
+entity tb_multiplier_1u is
+end tb_multiplier_1u;
 
 
-architecture behavioral of tb_multiplier_1 is
+architecture behavioral of tb_multiplier_1u is
 
     -- component declarations
-    component multiplier_1
+    component multiplier_1u
         port(
             -- input ports
             a   : in unsigned (3 downto 0);
@@ -55,7 +55,7 @@ architecture behavioral of tb_multiplier_1 is
 begin
 
     -- intantiation of the Unit under test
-    uut: multiplier_1
+    uut: multiplier_1u
     port map(
         a => s_a,
         b => s_b,

@@ -3,7 +3,7 @@
 -- Engineer:            Leandro D. Medus
 --
 -- Create Date:         18:17:00 08/05/2020 (dd/mm/yyyy)
--- Design Name:         Unsigned/Signed Multiplier #1
+-- Design Name:         Unsigned Multiplier #1
 -- Module Name:         multiplier_1 - Behavioral
 -- Project Name:        ex_3.2
 -- Target Devices:      Basys 3
@@ -23,7 +23,7 @@ library ieee;
     use ieee.std_logic_1164.all;
     use ieee.numeric_std.all;
 
-entity multiplier_1 is
+entity multiplier_1u is
     port (
         -- input ports
         a   : in unsigned (3 downto 0);
@@ -33,7 +33,7 @@ entity multiplier_1 is
     );
 end entity;
 
-architecture arch of multiplier_1 is
+architecture arch of multiplier_1u is
 
 begin
     y <= a * b;
