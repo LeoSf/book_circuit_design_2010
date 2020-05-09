@@ -1,7 +1,7 @@
 # *****************************************************************************************
 # Leandro Medus 2020
 #
-# Vivado (TM) v2019.1 (64-bit)
+# Tool: Vivado (TM) v2019.1 (64-bit)
 #
 # auto_generate_project.tcl: Tcl script for creating project
 #
@@ -126,6 +126,11 @@ set_property -name "sim.central_dir" -value "$proj_dir/${_xil_proj_name_}.ip_use
 set_property -name "sim.ip.auto_export_scripts" -value "1" -objects $obj
 set_property -name "simulator_language" -value "Mixed" -objects $obj
 
+set_property -name "target_language" -value "VHDL" -objects $obj
+set_property -name "xsim.array_display_limit" -value "1024" -objects $obj
+set_property -name "xsim.radix" -value "hex" -objects $obj
+set_property -name "xsim.time_unit" -value "ns" -objects $obj
+set_property -name "xsim.trace_limit" -value "65536" -objects $obj
 
 # create src directory to alocate vhdl files
 file mkdir $proj_dir/src ;# [file mkdir] in Tcl is like mkdir -p
