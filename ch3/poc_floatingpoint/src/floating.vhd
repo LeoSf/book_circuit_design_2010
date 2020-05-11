@@ -22,8 +22,14 @@
 -- library ieee;
 --     use ieee.std_logic_1164.all;
 --     use ieee.numeric_std.all;
-library ieee_proposed;
-    use ieee_proposed.float_pkg.all;
+
+-- uncomment the following package for synthesis
+library ieee;
+    use ieee.float_pkg.all;
+
+-- uncomment the following library and package for simulation
+-- library ieee_proposed;
+--     use ieee_proposed.float_pkg.all;
 
 entity floating is
     port (
