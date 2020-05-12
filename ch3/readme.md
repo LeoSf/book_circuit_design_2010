@@ -9,6 +9,7 @@
 * Example 3.6: Slicing a 1Dx1D Array of Bit Vectors
 * Example 3.7: Slicing a 2D Array of Bits
 * Example 3.8: Multiplexer with 1Dx1D PORT
+* Example 3.9: Recommended Signed Multiplier Implementation (for Integers)
 
 
 ## Proof of Concepts Index
