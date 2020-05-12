@@ -8,6 +8,7 @@
 * Example 3.5: Slicing a 1Dx1D Array of Integers
 * Example 3.6: Slicing a 1Dx1D Array of Bit Vectors
 * Example 3.7: Slicing a 2D Array of Bits
+* Example 3.8: Multiplexer with 1Dx1D PORT
 
 
 ## Proof of Concepts Index
