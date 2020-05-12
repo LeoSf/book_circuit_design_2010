@@ -93,6 +93,11 @@
 !*.bmm
 !*.xmp
 
+#############
+#Python-files
+#############
+!*.py
+
 
 ##############################
 # Other directories to exclude
