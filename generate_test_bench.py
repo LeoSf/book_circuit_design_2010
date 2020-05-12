@@ -45,7 +45,7 @@ regex_entity = re.compile(r'\s*entity+\s+(\w+)\s+is\s*', re.I)
 
 # regex expression to get all the ports description
 # this gets the current data ports organized as:  port_name, direction, type
-regex_ports = re.compile(r'\s*(\w+)\s*\:\s*(in|out|inout)\s*([\w|\s|\(|\)]*).*', re.I)
+regex_ports = re.compile(r'\s*(\w+)\s*\:\s*(in|out|inout)\s*([\w|\s]*[\(|\)]*[\w|\s]*[\(|\)]*);*', re.I)
 
 PORT_NAME_ID = 0  # data position in the regex_ports list
 PORT_DIR_ID = 1  # data position in the regex_ports list
@@ -102,7 +102,8 @@ def generate_test_bench(file_path):
                     entity_name = result[0]
 
             if entity_name:
-                result = regex_ports.findall(line.lower())
+                # result = regex_ports.findall(line.lower())
+                result = regex_ports.findall(line)
                 result = list(result[0]) if result else None
 
                 if result:
@@ -226,29 +227,29 @@ architecture behavioral of tb_""" + entity_name + """ is
             else:
                 str_body += '\n'
 
-    str_body += """            );
+    str_body += """        );
     end component;
 
     -- clock period definition
     constant c_CLK_PERIOD : time := 10 ns;
+
     """
 
     # signals declarations -----------------------------
-    str_body += """-- input signals\n
+    str_body += """-- input signals
     signal s_clk    : std_logic := '0';
-    signal s_rst_n  : std_logic := '0';
-    """
+    signal s_rst_n  : std_logic := '0';\n"""
     for port in ports_in:
-        str_body += "    signal s_" + port[0] + "\t: " + port[2] + ';\n'
+        str_body += "    signal s_" + port[0] + "\t\t: " + port[2] + ';\n'
 
     str_body += "    -- output signals\n"
     for port in ports_out:
-        str_body += "    signal s_" + port[0] + "\t: " + port[2] + ';\n'
+        str_body += "    signal s_" + port[0] + "\t\t: " + port[2] + ';\n'
 
     if ports_inout:
         str_body += "    -- inout signals\n"
         for port in ports_inout:
-            str_body += "    signal s_" + port[0] + "\t: " + port[2] + ';\n'
+            str_body += "    signal s_" + port[0] + "\t\t: " + port[2] + ';\n'
 
     str_body += """begin
 
