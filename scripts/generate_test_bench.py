@@ -23,6 +23,7 @@ TODO: generics not supported yet
 -- output ports
 constant c_CLK_PERIOD : time := 10 ns;
     -- input signals
+detect clk and reset signals    
 """
 
 import re
@@ -45,7 +46,7 @@ regex_entity = re.compile(r'\s*entity+\s+(\w+)\s+is\s*', re.I)
 
 # regex expression to get all the ports description
 # this gets the current data ports organized as:  port_name, direction, type
-regex_ports = re.compile(r'\s*(\w+)\s*\:\s*(in|out|inout)\s*([\w|\s]*[\(|\)]*[\w|\s]*[\(|\)]*);*', re.I)
+regex_ports = re.compile(r'\s*(\w+)\s*\:\s*(in|out|inout)\s*([[\w| ]*[\(|\)]*[\w| ]*[\(|\)]*);*', re.I)
 
 PORT_NAME_ID = 0  # data position in the regex_ports list
 PORT_DIR_ID = 1  # data position in the regex_ports list
@@ -253,7 +254,7 @@ architecture behavioral of tb_""" + entity_name + """ is
 
     str_body += """begin
 
-    -- intantiation of the Unit under test
+    -- instantiation of the Unit under test
     uut: """ + entity_name + """
     port map("""
 

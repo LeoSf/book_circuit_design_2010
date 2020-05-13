@@ -94,7 +94,7 @@ if { $::argc > 0 } {
 }
 
 # Create project
-create_project ${_xil_proj_name_} ./${_xil_proj_name_} -part xc7a35tcpg236-1
+create_project ${_xil_proj_name_} ${origin_dir}/${_xil_proj_name_} -part xc7a35tcpg236-1
 
 # Set the directory path for the new project
 set proj_dir [get_property directory [current_project]]
@@ -159,3 +159,104 @@ if {[string equal [get_filesets -quiet sim_1] ""]} {
 }
 
 add_files -norecurse $proj_dir/src/tb_${_xil_module_name_}.vhd
+
+# Set 'sources_1' fileset object
+set obj [get_filesets sources_1]
+
+# Set 'sources_1' fileset file properties for local files
+set file "src/${_xil_module_name_}.vhd"
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set_property -name "file_type" -value "VHDL" -objects $file_obj
+set_property -name "is_enabled" -value "1" -objects $file_obj
+set_property -name "is_global_include" -value "0" -objects $file_obj
+set_property -name "library" -value "xil_defaultlib" -objects $file_obj
+set_property -name "path_mode" -value "RelativeFirst" -objects $file_obj
+set_property -name "used_in" -value "synthesis simulation" -objects $file_obj
+set_property -name "used_in_simulation" -value "1" -objects $file_obj
+set_property -name "used_in_synthesis" -value "1" -objects $file_obj
+
+set file "src/tb_${_xil_module_name_}.vhd"
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set_property -name "file_type" -value "VHDL" -objects $file_obj
+set_property -name "is_enabled" -value "1" -objects $file_obj
+set_property -name "is_global_include" -value "0" -objects $file_obj
+set_property -name "library" -value "xil_defaultlib" -objects $file_obj
+set_property -name "path_mode" -value "RelativeFirst" -objects $file_obj
+set_property -name "used_in" -value "simulation" -objects $file_obj
+set_property -name "used_in_simulation" -value "1" -objects $file_obj
+set_property -name "used_in_synthesis" -value "0" -objects $file_obj
+
+
+# Set 'sources_1' fileset properties
+set obj [get_filesets sources_1]
+set_property -name "design_mode" -value "RTL" -objects $obj
+set_property -name "edif_extra_search_paths" -value "" -objects $obj
+set_property -name "elab_link_dcps" -value "1" -objects $obj
+set_property -name "elab_load_timing_constraints" -value "1" -objects $obj
+set_property -name "generic" -value "" -objects $obj
+set_property -name "include_dirs" -value "" -objects $obj
+set_property -name "lib_map_file" -value "" -objects $obj
+set_property -name "loop_count" -value "1000" -objects $obj
+set_property -name "name" -value "sources_1" -objects $obj
+set_property -name "top" -value "${_xil_module_name_}" -objects $obj
+set_property -name "top_auto_set" -value "0" -objects $obj
+set_property -name "verilog_define" -value "" -objects $obj
+set_property -name "verilog_uppercase" -value "0" -objects $obj
+set_property -name "verilog_version" -value "verilog_2001" -objects $obj
+set_property -name "vhdl_version" -value "vhdl_2k" -objects $obj
+
+
+# Set 'sim_1' fileset object
+set obj [get_filesets sim_1]
+# Empty (no sources present)
+
+# Set 'sim_1' fileset properties
+set obj [get_filesets sim_1]
+set_property -name "32bit" -value "0" -objects $obj
+set_property -name "generic" -value "" -objects $obj
+set_property -name "include_dirs" -value "" -objects $obj
+set_property -name "incremental" -value "1" -objects $obj
+set_property -name "name" -value "sim_1" -objects $obj
+set_property -name "nl.cell" -value "" -objects $obj
+set_property -name "nl.incl_unisim_models" -value "0" -objects $obj
+set_property -name "nl.process_corner" -value "slow" -objects $obj
+set_property -name "nl.rename_top" -value "" -objects $obj
+set_property -name "nl.sdf_anno" -value "1" -objects $obj
+set_property -name "nl.write_all_overrides" -value "0" -objects $obj
+set_property -name "source_set" -value "sources_1" -objects $obj
+set_property -name "systemc_include_dirs" -value "" -objects $obj
+set_property -name "top" -value "tb_${_xil_module_name_}" -objects $obj
+set_property -name "top_lib" -value "xil_defaultlib" -objects $obj
+set_property -name "transport_int_delay" -value "0" -objects $obj
+set_property -name "transport_path_delay" -value "0" -objects $obj
+set_property -name "verilog_define" -value "" -objects $obj
+set_property -name "verilog_uppercase" -value "0" -objects $obj
+set_property -name "xelab.dll" -value "0" -objects $obj
+set_property -name "xsim.compile.tcl.pre" -value "" -objects $obj
+set_property -name "xsim.compile.xsc.more_options" -value "" -objects $obj
+set_property -name "xsim.compile.xvhdl.more_options" -value "" -objects $obj
+set_property -name "xsim.compile.xvhdl.nosort" -value "1" -objects $obj
+set_property -name "xsim.compile.xvhdl.relax" -value "1" -objects $obj
+set_property -name "xsim.compile.xvlog.more_options" -value "" -objects $obj
+set_property -name "xsim.compile.xvlog.nosort" -value "1" -objects $obj
+set_property -name "xsim.compile.xvlog.relax" -value "1" -objects $obj
+set_property -name "xsim.elaborate.debug_level" -value "typical" -objects $obj
+set_property -name "xsim.elaborate.load_glbl" -value "1" -objects $obj
+set_property -name "xsim.elaborate.mt_level" -value "auto" -objects $obj
+set_property -name "xsim.elaborate.rangecheck" -value "0" -objects $obj
+set_property -name "xsim.elaborate.relax" -value "1" -objects $obj
+set_property -name "xsim.elaborate.sdf_delay" -value "sdfmax" -objects $obj
+set_property -name "xsim.elaborate.snapshot" -value "" -objects $obj
+set_property -name "xsim.elaborate.xelab.more_options" -value "" -objects $obj
+set_property -name "xsim.elaborate.xsc.more_options" -value "" -objects $obj
+set_property -name "xsim.simulate.add_positional" -value "0" -objects $obj
+set_property -name "xsim.simulate.custom_tcl" -value "" -objects $obj
+set_property -name "xsim.simulate.log_all_signals" -value "0" -objects $obj
+set_property -name "xsim.simulate.no_quit" -value "0" -objects $obj
+set_property -name "xsim.simulate.runtime" -value "1000ns" -objects $obj
+set_property -name "xsim.simulate.saif" -value "" -objects $obj
+set_property -name "xsim.simulate.saif_all_signals" -value "0" -objects $obj
+set_property -name "xsim.simulate.saif_scope" -value "" -objects $obj
+set_property -name "xsim.simulate.tcl.post" -value "" -objects $obj
+set_property -name "xsim.simulate.wdb" -value "" -objects $obj
+set_property -name "xsim.simulate.xsim.more_options" -value "" -objects $obj

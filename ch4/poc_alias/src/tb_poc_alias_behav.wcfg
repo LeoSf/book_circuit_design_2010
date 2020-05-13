@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="tb_poc_alias_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="tb_poc_alias" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="80000001fs"></ZoomEndTime>
+      <Cursor1Time time="56686000fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="149"></NameColumnWidth>
+      <ValueColumnWidth column_width="137"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="14" />
+   <wvobject fp_name="/tb_poc_alias/s_clk_i" type="logic">
+      <obj_property name="ElementShortName">s_clk_i</obj_property>
+      <obj_property name="ObjectShortName">s_clk_i</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_poc_alias/s_rst_n" type="logic">
+      <obj_property name="ElementShortName">s_rst_n</obj_property>
+      <obj_property name="ObjectShortName">s_rst_n</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_poc_alias/s_data_i" type="array">
+      <obj_property name="ElementShortName">s_data_i[31:0]</obj_property>
+      <obj_property name="ObjectShortName">s_data_i[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_poc_alias/s_valid_o" type="logic">
+      <obj_property name="ElementShortName">s_valid_o</obj_property>
+      <obj_property name="ObjectShortName">s_valid_o</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_poc_alias/s_upper_bus1_o" type="array">
+      <obj_property name="ElementShortName">s_upper_bus1_o[15:0]</obj_property>
+      <obj_property name="ObjectShortName">s_upper_bus1_o[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_poc_alias/s_upper_bus2_o" type="array">
+      <obj_property name="ElementShortName">s_upper_bus2_o[15:0]</obj_property>
+      <obj_property name="ObjectShortName">s_upper_bus2_o[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_poc_alias/s_lower_bus1_o" type="array">
+      <obj_property name="ElementShortName">s_lower_bus1_o[15:0]</obj_property>
+      <obj_property name="ObjectShortName">s_lower_bus1_o[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_poc_alias/s_lower_bus2_o" type="array">
+      <obj_property name="ElementShortName">s_lower_bus2_o[15:0]</obj_property>
+      <obj_property name="ObjectShortName">s_lower_bus2_o[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_poc_alias/c_CLK_PERIOD" type="other">
+      <obj_property name="ElementShortName">c_CLK_PERIOD</obj_property>
+      <obj_property name="ObjectShortName">c_CLK_PERIOD</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_poc_alias/uut/bus1_o" type="array">
+      <obj_property name="ElementShortName">bus1_o[31:0]</obj_property>
+      <obj_property name="ObjectShortName">bus1_o[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_poc_alias/uut/bus2_o" type="array">
+      <obj_property name="ElementShortName">bus2_o[31:0]</obj_property>
+      <obj_property name="ObjectShortName">bus2_o[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_poc_alias/uut/bus3_o" type="array">
+      <obj_property name="ElementShortName">bus3_o[31:0]</obj_property>
+      <obj_property name="ObjectShortName">bus3_o[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_poc_alias/uut/data_bus" type="array">
+      <obj_property name="ElementShortName">data_bus[31:0]</obj_property>
+      <obj_property name="ObjectShortName">data_bus[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_poc_alias/uut/data_bus" type="array">
+      <obj_property name="ElementShortName">data_bus[31:0]</obj_property>
+      <obj_property name="ObjectShortName">data_bus[31:0]</obj_property>
+   </wvobject>
+</wave_config>
