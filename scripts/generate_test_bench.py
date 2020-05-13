@@ -253,7 +253,7 @@ architecture behavioral of tb_""" + entity_name + """ is
 
     str_body += """begin
 
-    -- intantiation of the Unit under test
+    -- instantiation of the Unit under test
     uut: """ + entity_name + """
     port map("""
 
