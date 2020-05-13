@@ -94,7 +94,7 @@ if { $::argc > 0 } {
 }
 
 # Create project
-create_project ${_xil_proj_name_} ./${_xil_proj_name_} -part xc7a35tcpg236-1
+create_project ${_xil_proj_name_} ${origin_dir}/${_xil_proj_name_} -part xc7a35tcpg236-1
 
 # Set the directory path for the new project
 set proj_dir [get_property directory [current_project]]
