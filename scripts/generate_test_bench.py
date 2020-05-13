@@ -23,6 +23,7 @@ TODO: generics not supported yet
 -- output ports
 constant c_CLK_PERIOD : time := 10 ns;
     -- input signals
+detect clk and reset signals    
 """
 
 import re
