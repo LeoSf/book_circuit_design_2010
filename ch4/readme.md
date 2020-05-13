@@ -7,6 +7,5 @@
 * Example 4.4: Construction of a Delay Line with the keep Attribute
 * Example 4.5: Keeping Redundant Registers with preserve and noprune Attributes
 
-
 ## Proof of Concepts Index
-* PoC:
+* PoC: Proff of Concept - alias
