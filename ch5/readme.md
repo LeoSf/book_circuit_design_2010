@@ -5,6 +5,7 @@
 * Example 5.2: Multiplexer Implemented with WHEN and SELECT
 * Example 5.3: ALU
 * Example 5.4: Generic Address Decoder with GENERATE
+* Example 5.5: COMPONENT Instantiation with GENERATE
 
 ## Proof of Concepts Index
 * PoC:
