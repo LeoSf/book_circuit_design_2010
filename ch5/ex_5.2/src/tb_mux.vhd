@@ -65,7 +65,7 @@ architecture behavioral of tb_mux is
 begin
 
     -- instantiation of the Unit under test
-    uut: mux
+    uut: entity work.mux(with_select)
 	generic map(
 		N => N
 	)
