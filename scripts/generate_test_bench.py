@@ -13,17 +13,11 @@ Script Description:
 -------------------
 This is a Script to generate a testbench automatically from a custom VHDL module.
 
-Version: 1.0
+Version: 1.5
 ------------
 
-TODO: generics not supported yet
-
-# FIXME: when there is no port
--- input ports
--- output ports
-constant c_CLK_PERIOD : time := 10 ns;
-    -- input signals
-detect clk and reset signals    
+TODO:
+    - generics not supported yet
 """
 
 import re
@@ -51,6 +45,12 @@ regex_ports = re.compile(r'\s*(\w+)\s*\:\s*(in|out|inout)\s*([[\w| ]*[\(|\)]*[\w
 PORT_NAME_ID = 0  # data position in the regex_ports list
 PORT_DIR_ID = 1  # data position in the regex_ports list
 PORT_TYPE_ID = 2  # data position in the regex_ports list
+
+# specific clock ports
+regex_clk = re.compile(r'(\w*clk\w*|\w*clock\w*)', re.I)
+
+# specific reset ports
+regex_rst = re.compile(r'(\w*rst\w*|\w*reset\w*)', re.I)
 
 
 def test_regex(line):
@@ -173,62 +173,67 @@ def set_body(entity_name, port_data):
     ports_out = list()
     ports_inout = list()
 
+    clk_port_name = "clk"
+    rst_port_name = "rst_n"
+
+    clk_port_present = False
+    rst_port_present = False
+
     for port in port_data:
         if port[PORT_DIR_ID] == "in":
             ports_in.append(port)
+
         if port[PORT_DIR_ID] == "out":
             ports_out.append(port)
+
         if port[PORT_DIR_ID] == "inout":
             ports_inout.append(port)
 
-    N_PORTS = len(port_data)
-
-    # str_body = ""
+    n_ports = len(port_data)
 
     str_body = """entity tb_""" + entity_name + """ is
-end tb_""" + entity_name + """;
+    end tb_""" + entity_name + """;
 
 
-architecture behavioral of tb_""" + entity_name + """ is
+    architecture behavioral of tb_""" + entity_name + """ is
 
     -- component declarations
     component """ + entity_name + """
         port(\n"""
 
-    # TODO improve ";" final position
 
     # ports declarations
     port_ctr = 0
 
-    str_body += "             -- input ports\n"
+    str_body += "\t\t\t-- input ports\n"
     for port in ports_in:
-        str_body += "             " + port[0] + "\t\t: " + port[1] + "\t" + port[2]
+        str_body += "\t\t\t" + port[PORT_NAME_ID] + "\t\t: " + port[PORT_DIR_ID] + "\t" + port[PORT_TYPE_ID]
         port_ctr += 1
-        if port_ctr < N_PORTS:
+        if port_ctr < n_ports:
             str_body += ';\n'
         else:
             str_body += '\n'
 
-    str_body += "             -- output ports\n"
+    str_body += "\t\t\t-- output ports\n"
     for port in ports_out:
-        str_body += "             " + port[0] + "\t\t: " + port[1] + "\t" + port[2]
+        str_body += "\t\t\t" + port[PORT_NAME_ID] + "\t\t: " + port[PORT_DIR_ID] + "\t" + port[PORT_TYPE_ID]
         port_ctr += 1
-        if port_ctr < N_PORTS:
+        if port_ctr < n_ports:
             str_body += ';\n'
         else:
             str_body += '\n'
 
     if ports_inout:
-        str_body += "             -- inout ports\n"
+        str_body += "\t\t\t-- inout ports\n"
         for port in ports_inout:
-            str_body += "             " + port[0] + "\t\t: " + port[1] + "\t" + port[2] + ';\n'
+            str_body += "\t\t\t" + port[PORT_NAME_ID] + "\t\t: " + port[PORT_DIR_ID] + "\t" + port[PORT_TYPE_ID] + ';\n'
             port_ctr += 1
-            if port_ctr < N_PORTS:
+            if port_ctr < n_ports:
                 str_body += ';\n'
             else:
                 str_body += '\n'
 
-    str_body += """        );
+    str_body += """\t\t);
     end component;
 
     -- clock period definition
@@ -237,20 +242,48 @@ architecture behavioral of tb_""" + entity_name + """ is
     """
 
     # signals declarations -----------------------------
-    str_body += """-- input signals
-    signal s_clk    : std_logic := '0';
-    signal s_rst_n  : std_logic := '0';\n"""
-    for port in ports_in:
-        str_body += "    signal s_" + port[0] + "\t\t: " + port[2] + ';\n'
+    str_body += "-- input signals\n"
 
-    str_body += "    -- output signals\n"
-    for port in ports_out:
-        str_body += "    signal s_" + port[0] + "\t\t: " + port[2] + ';\n'
+    # signal s_clk    : std_logic := '0';
+    # signal s_rst_n  : std_logic := '0';\n"""
+
+    # writing all the signals to connect to the current module
+    module_signals_body = ""
+
+    if ports_in:
+        for port in ports_in:
+
+            result = regex_clk.findall(port[PORT_NAME_ID])
+            if result and not clk_port_present:
+                clk_port_present = True
+                clk_port_name = result[0]
+
+            result = regex_rst.findall(port[PORT_NAME_ID])
+            if result and not rst_port_present:
+                rst_port_present = True
+                rst_port_name = result[0]
+
+            module_signals_body += "\tsignal s_" + port[PORT_NAME_ID] + "\t\t: " + port[PORT_TYPE_ID] + ';\n'
+
+    if ports_out:
+        module_signals_body += "\t-- output signals\n"
+        for port in ports_out:
+            module_signals_body += "\tsignal s_" + port[PORT_NAME_ID] + "\t\t: " + port[PORT_TYPE_ID] + ';\n'
 
     if ports_inout:
-        str_body += "    -- inout signals\n"
+        module_signals_body += "\t-- inout signals\n"
         for port in ports_inout:
-            str_body += "    signal s_" + port[0] + "\t\t: " + port[2] + ';\n'
+            module_signals_body += "\tsignal s_" + port[PORT_NAME_ID] + "\t\t: " + port[PORT_TYPE_ID] + ';\n'
+
+    # if clock o reset signal are not present, then it will be included
+    if not clk_port_present:
+        str_body += "\tsignal s_clk\t: std_logic := '0';\n"
+
+    if not rst_port_present:
+        str_body += "\tsignal s_rst_n\t: std_logic := '0';\n"
+
+    # adding now all the signals detected
+    str_body += module_signals_body
 
     str_body += """begin
 
@@ -264,51 +297,53 @@ architecture behavioral of tb_""" + entity_name + """ is
     # signals declarations -----------------------------
     port_ctr = 0
 
-    str_body += "\n        -- input ports\n"
+    str_body += "\n\t\t-- input ports\n"
     for port in ports_in:
-        str_body += "        " + port[0] + "\t=> " + "s_" + port[0]
+        str_body += "\t\t" + port[0] + "\t=> " + "s_" + port[0]
         port_ctr += 1
-        if port_ctr < N_PORTS:
+        if port_ctr < n_ports:
             str_body += ',\n'
         else:
             str_body += '\n'
 
-    str_body += "        -- output ports\n"
+    str_body += "\t\t-- output ports\n"
     for port in ports_out:
-        str_body += "        " + port[0] + "\t=> " + "s_" + port[0]
+        str_body += "\t\t" + port[0] + "\t=> " + "s_" + port[0]
         port_ctr += 1
-        if port_ctr < N_PORTS:
+        if port_ctr < n_ports:
             str_body += ',\n'
         else:
             str_body += '\n'
 
     if ports_inout:
-        str_body += "        -- inout ports\n"
+        str_body += "\t\t-- inout ports\n"
         for port in ports_inout:
-            str_body += "        " + port[0] + "\t=> " + "s_" + port[0]
+            str_body += "\t\t" + port[0] + "\t=> " + "s_" + port[0]
             port_ctr += 1
-            if port_ctr < N_PORTS:
+            if port_ctr < n_ports:
                 str_body += ',\n'
             else:
                 str_body += '\n'
 
-    str_body += """    );
+    str_body += "\t);\n\n"
 
-    -- Clock process definitions
+    clk_stimulus = """\t-- Clock process definitions
     p_clk_process : process
     begin
-        s_clk <= '0';
+        <clock_signal> <= '0';
         wait for c_CLK_PERIOD/2;
-        s_clk <= '1';
+        <clock_signal> <= '1';
         wait for c_CLK_PERIOD/2;
-    end process;
+    end process;\n"""
 
-    -- stimulus process
+    clk_stimulus = clk_stimulus.replace("<clock_signal>", "s_" + clk_port_name)
+
+    process_stimulus = """\n\t-- stimulus process
     p_stim : process
     begin
-        s_rst_n <= '0';
+        <reset_signal> <= '0';
         wait for 40 ns;
-        s_rst_n <= '1';
+        <reset_signal> <= '1';
 
         wait for c_CLK_PERIOD;
 
@@ -321,18 +356,20 @@ architecture behavioral of tb_""" + entity_name + """ is
     end process;
 
 
-end behavioral;
+    end behavioral;
     """
+    process_stimulus = process_stimulus.replace("<reset_signal>", "s_" + rst_port_name)
+
+    str_body += clk_stimulus
+    str_body += process_stimulus
 
     return str_body
 
 
 if __name__ == '__main__':
     """
+    main function
     """
-    # text = "        row     : in integer range 0 to 3;"
-    # test_regex(text)
-    # local_path_to_file = "sample_module.vhd"
 
     if len(sys.argv) == 2:
         path_to_file = sys.argv[1]
@@ -341,5 +378,4 @@ if __name__ == '__main__':
         print("Incorrect number of arguments")
         print('help: python generate_test_bench sample.vhd')
 
-    # path_to_file = ".\\ex_3.7\\src\\array_slice_2D_bitvector.vhd"
-    # generate_test_bench(path_to_file)
+    print("Script executed successfully")
