@@ -13,7 +13,7 @@ Script Description:
 -------------------
 This is a Script to generate a testbench automatically from a custom VHDL module.
 
-Version: 1.6
+Version: 1.7
 ------------
 
 TODO:
@@ -53,11 +53,15 @@ regex_clk = re.compile(r'(\w*clk\w*|\w*clock\w*)', re.I)
 # specific reset ports
 regex_rst = re.compile(r'(\w*rst\w*|\w*reset\w*)', re.I)
 
+# regex for generics parameters of the architecture
 regex_generics = re.compile(r'(\w*) *: *([\w|_]* *[\d|\w|(|)| |-]*[\w|)]) *:= ([\d|\w|"|.]*) *(\w*)')
 GENERIC_NAME_ID = 0     # data position in the regex_generics list
 GENERIC_TYPE_ID = 1     # data position in the regex_generics list
 GENERIC_VALUE_ID = 2    # data position in the regex_generics list
 GENERIC_UNIT_ID = 3     # data position in the regex_generics list
+
+# regex for architectures names
+regex_arch = re.compile(r'architecture (\w*) of', re.I)
 
 
 def test_regex(line):
@@ -85,9 +89,12 @@ def generate_test_bench(file_path):
     # print(output_file_path)
 
     testbench_metadata = dict()
+    testbench_metadata["header_description"] = list()
+    testbench_metadata["libraries"] = list()
     testbench_metadata["entity_name"] = ""
     testbench_metadata["generics"] = list()
     testbench_metadata["ports"] = list()
+    testbench_metadata["archs"] = list()
 
     with open(file_path) as fd:
         entity_name = None
@@ -96,6 +103,8 @@ def generate_test_bench(file_path):
 
         data_generics = list()
         data_ports = list()
+        arch_names = list()
+
         for line in fd:
 
             if entity_name is None:
@@ -117,12 +126,14 @@ def generate_test_bench(file_path):
 
             if entity_name:
 
+                # generics:
                 result = regex_generics.findall(line)
                 result = list(result[0]) if result else None
 
                 if result:
                     data_generics.append(result)
 
+                # ports:
                 # result = regex_ports.findall(line.lower())
                 result = regex_ports.findall(line)
                 result = list(result[0]) if result else None
@@ -130,11 +141,19 @@ def generate_test_bench(file_path):
                 if result:
                     data_ports.append(result)
 
+                # architecture name
+                result = regex_arch.findall(line)
+                result = result[0] if result else None
+
+                if result:
+                    arch_names.append(result)
+
         testbench_metadata["header_description"] = header_description
         testbench_metadata["libraries"] = libraries
         testbench_metadata["entity_name"] = entity_name
         testbench_metadata["generics"] = data_generics
         testbench_metadata["ports"] = data_ports
+        testbench_metadata["archs"] = arch_names
 
         write_testbench(output_file_path, testbench_metadata)
 
@@ -358,10 +377,10 @@ def set_body(testbench_metadata):
     # adding now all the signals detected
     str_body += module_signals_body + "\n"
 
-    str_body += """begin
+    str_body += "begin\n"
 
-    -- instantiation of the Unit under test
-    uut: """ + entity_name + "\n"
+    str_body += "\t-- instantiation of the Unit under test\n"
+    str_body += "\tuut: work." + entity_name + "(" + testbench_metadata["archs"][0] +")\n"
 
     if generics_data:
         str_body += "\tgeneric map(\n"
