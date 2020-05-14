@@ -55,3 +55,12 @@ begin
                 x2 when "10",
                 x3 when others;
 end architecture;
+
+
+---------------------------------
+configuration which_mux of mux is
+    for with_when
+    -- for with_select
+    end for;
+end configuration;
+---------------------------------
