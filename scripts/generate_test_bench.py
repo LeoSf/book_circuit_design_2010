@@ -380,7 +380,7 @@ def set_body(testbench_metadata):
     str_body += "begin\n"
 
     str_body += "\t-- instantiation of the Unit under test\n"
-    str_body += "\tuut: work." + entity_name + "(" + testbench_metadata["archs"][0] +")\n"
+    str_body += "\tuut : entity work." + entity_name + "(" + testbench_metadata["archs"][0] +")\n"
 
     if generics_data:
         str_body += "\tgeneric map(\n"
