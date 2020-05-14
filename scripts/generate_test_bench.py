@@ -105,6 +105,8 @@ def generate_test_bench(file_path):
         data_ports = list()
         arch_names = list()
 
+        entity_complete = False
+
         for line in fd:
 
             if entity_name is None:
@@ -124,7 +126,7 @@ def generate_test_bench(file_path):
                 if result:
                     entity_name = result[0]
 
-            if entity_name:
+            if entity_name and not entity_complete:
 
                 # generics:
                 result = regex_generics.findall(line)
@@ -141,12 +143,19 @@ def generate_test_bench(file_path):
                 if result:
                     data_ports.append(result)
 
+                # end of the entity description
+                if "end" in line:
+                    entity_complete = True
+
+            if entity_complete:
                 # architecture name
                 result = regex_arch.findall(line)
                 result = result[0] if result else None
 
                 if result:
                     arch_names.append(result)
+
+
 
         testbench_metadata["header_description"] = header_description
         testbench_metadata["libraries"] = libraries
@@ -380,7 +389,7 @@ def set_body(testbench_metadata):
     str_body += "begin\n"
 
     str_body += "\t-- instantiation of the Unit under test\n"
-    str_body += "\tuut : entity work." + entity_name + "(" + testbench_metadata["archs"][0] +")\n"
+    str_body += "\tuut : entity work." + entity_name + "(" + testbench_metadata["archs"][0] + ")\n"
 
     if generics_data:
         str_body += "\tgeneric map(\n"
