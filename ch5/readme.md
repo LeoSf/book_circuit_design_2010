@@ -9,6 +9,7 @@
 * Example 5.6: DFF Implemented with Concurrent Code
     (Implementing Sequential Circuits with Concurrent Code)
 * Example 5.7: Recommended Adder/Subtracter Implementation
+* Example 5.8: Short-Pulse Generator with the keep Attribute
 
 ## Proof of Concepts Index
 * PoC:
