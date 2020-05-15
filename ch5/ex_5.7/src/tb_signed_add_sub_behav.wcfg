@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="tb_signed_add_sub_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="tb_signed_add_sub" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="100000001fs"></ZoomEndTime>
+      <Cursor1Time time="100000000fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="125"></NameColumnWidth>
+      <ValueColumnWidth column_width="67"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="9" />
+   <wvobject fp_name="/tb_signed_add_sub/s_clk" type="logic">
+      <obj_property name="ElementShortName">s_clk</obj_property>
+      <obj_property name="ObjectShortName">s_clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_signed_add_sub/s_rst_n" type="logic">
+      <obj_property name="ElementShortName">s_rst_n</obj_property>
+      <obj_property name="ObjectShortName">s_rst_n</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_signed_add_sub/s_a" type="array">
+      <obj_property name="ElementShortName">s_a[3:0]</obj_property>
+      <obj_property name="ObjectShortName">s_a[3:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_signed_add_sub/s_b" type="array">
+      <obj_property name="ElementShortName">s_b[3:0]</obj_property>
+      <obj_property name="ObjectShortName">s_b[3:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_signed_add_sub/s_cin" type="logic">
+      <obj_property name="ElementShortName">s_cin</obj_property>
+      <obj_property name="ObjectShortName">s_cin</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_signed_add_sub/s_sum" type="array">
+      <obj_property name="ElementShortName">s_sum[4:0]</obj_property>
+      <obj_property name="ObjectShortName">s_sum[4:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_signed_add_sub/s_sub" type="array">
+      <obj_property name="ElementShortName">s_sub[4:0]</obj_property>
+      <obj_property name="ObjectShortName">s_sub[4:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_signed_add_sub/N" type="other">
+      <obj_property name="ElementShortName">N</obj_property>
+      <obj_property name="ObjectShortName">N</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_signed_add_sub/c_CLK_PERIOD" type="other">
+      <obj_property name="ElementShortName">c_CLK_PERIOD</obj_property>
+      <obj_property name="ObjectShortName">c_CLK_PERIOD</obj_property>
+   </wvobject>
+</wave_config>

@@ -6,6 +6,9 @@
 * Example 5.3: ALU
 * Example 5.4: Generic Address Decoder with GENERATE
 * Example 5.5: COMPONENT Instantiation with GENERATE
+* Example 5.6: DFF Implemented with Concurrent Code
+    (Implementing Sequential Circuits with Concurrent Code)
+* Example 5.7: Recommended Adder/Subtracter Implementation
 
 ## Proof of Concepts Index
 * PoC:
