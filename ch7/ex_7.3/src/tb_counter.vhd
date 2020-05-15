@@ -20,8 +20,8 @@
 --
 ----------------------------------------------------------------------------------
 library ieee;
-	use ieee.std_logic_1164.all;
-	use ieee.numeric_std.all;
+    use ieee.std_logic_1164.all;
+    use ieee.numeric_std.all;
 
 entity tb_counter is
 end tb_counter;
@@ -34,8 +34,8 @@ architecture behavioral of tb_counter is
 		-- input ports
 		clk		: in	bit;
 		-- output ports
-		count1		: out	integer range 0 to 9;
-		count2		: out	integer range 0 to 9
+		count1		: out	std_logic_vector(3 downto 0);
+		count2		: out	std_logic_vector(3 downto 0)
 	);
     end component;
 
@@ -43,12 +43,12 @@ architecture behavioral of tb_counter is
     constant c_CLK_PERIOD : time := 10 ns;
 
     -- input signals
-	signal s_rst_n	: std_logic := '0';
-	signal s_clk		: bit;
+	signal s_rst_n		: std_logic := '0';
+	signal s_clk		: bit := '0';
 
 	-- output signals
-	signal s_count1		: integer range 0 to 9;
-	signal s_count2		: integer range 0 to 9;
+	signal s_count1		: std_logic_vector(3 downto 0);
+	signal s_count2		: std_logic_vector(3 downto 0);
 
 begin
 	-- instantiation of the Unit under test
