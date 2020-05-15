@@ -25,15 +25,15 @@ library ieee;
 
 entity short_pulse_gen is
     port (
-        clk         : in bit;
-        short_clk   : out bit
+        clk         : in std_logic;
+        short_clk   : out std_logic
     );
 end entity;
 ----------------------------------------------
 architecture short_pulse of short_pulse_gen is
-    signal a    : bit;
-    signal b    : bit;
-    signal c    : bit;
+    signal a    : std_logic;
+    signal b    : std_logic;
+    signal c    : std_logic;
 
     attribute keep : boolean;
     attribute keep of a, b, c: signal is true;
