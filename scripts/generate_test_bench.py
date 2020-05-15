@@ -13,11 +13,12 @@ Script Description:
 -------------------
 This is a Script to generate a testbench automatically from a custom VHDL module.
 
-Version: 1.5
+Version: 1.7
 ------------
 
 TODO:
     ---
+
 """
 
 import re
@@ -40,7 +41,7 @@ regex_entity = re.compile(r'\s*entity+\s+(\w+)\s+is\s*', re.I)
 
 # regex expression to get all the ports description
 # this gets the current data ports organized as:  port_name, direction, type
-regex_ports = re.compile(r'\s*(\w+)\s*\:\s*(in|out|inout)\s*([[\w| ]*[\(|\)]*[\w| ]*[\(|\)]*);*', re.I)
+regex_ports = re.compile(r'^\s*(\w+)\s*\:\s*(in|out|inout)\s+([[\w| ]*[\(|\)]*[\w| |*|-]*[\(|\)]{0,1});*', re.I)
 
 PORT_NAME_ID = 0  # data position in the regex_ports list
 PORT_DIR_ID = 1  # data position in the regex_ports list
@@ -51,6 +52,16 @@ regex_clk = re.compile(r'(\w*clk\w*|\w*clock\w*)', re.I)
 
 # specific reset ports
 regex_rst = re.compile(r'(\w*rst\w*|\w*reset\w*)', re.I)
+
+# regex for generics parameters of the architecture
+regex_generics = re.compile(r'^\s*(\w*) *: *([\w|_]* *[\d|\w|(|)| |-]*[\w|)]) *:= ([\d|\w|"|.]*) *(\w*)')
+GENERIC_NAME_ID = 0     # data position in the regex_generics list
+GENERIC_TYPE_ID = 1     # data position in the regex_generics list
+GENERIC_VALUE_ID = 2    # data position in the regex_generics list
+GENERIC_UNIT_ID = 3     # data position in the regex_generics list
+
+# regex for architectures names
+regex_arch = re.compile(r'architecture (\w*) of', re.I)
 
 
 def test_regex(line):
@@ -77,12 +88,25 @@ def generate_test_bench(file_path):
     output_file_path = get_output_file_path(file_path)
     # print(output_file_path)
 
+    testbench_metadata = dict()
+    testbench_metadata["header_description"] = list()
+    testbench_metadata["libraries"] = list()
+    testbench_metadata["entity_name"] = ""
+    testbench_metadata["generics"] = list()
+    testbench_metadata["ports"] = list()
+    testbench_metadata["archs"] = list()
+
     with open(file_path) as fd:
         entity_name = None
         header_description = list()
         libraries = list()
 
-        data = list()
+        data_generics = list()
+        data_ports = list()
+        arch_names = list()
+
+        entity_complete = False
+
         for line in fd:
 
             if entity_name is None:
@@ -102,15 +126,45 @@ def generate_test_bench(file_path):
                 if result:
                     entity_name = result[0]
 
-            if entity_name:
+            if entity_name and not entity_complete:
+
+                # generics:
+                result = regex_generics.findall(line)
+                result = list(result[0]) if result else None
+
+                if result:
+                    data_generics.append(result)
+
+                # ports:
                 # result = regex_ports.findall(line.lower())
                 result = regex_ports.findall(line)
                 result = list(result[0]) if result else None
 
                 if result:
-                    data.append(result)
+                    data_ports.append(result)
 
-        write_testbench(output_file_path, entity_name, data, header_description, libraries)
+                # end of the entity description
+                if "end" in line:
+                    entity_complete = True
+
+            if entity_complete:
+                # architecture name
+                result = regex_arch.findall(line)
+                result = result[0] if result else None
+
+                if result:
+                    arch_names.append(result)
+
+
+
+        testbench_metadata["header_description"] = header_description
+        testbench_metadata["libraries"] = libraries
+        testbench_metadata["entity_name"] = entity_name
+        testbench_metadata["generics"] = data_generics
+        testbench_metadata["ports"] = data_ports
+        testbench_metadata["archs"] = arch_names
+
+        write_testbench(output_file_path, testbench_metadata)
 
 
 def get_output_file_path(file_path):
@@ -137,16 +191,21 @@ def get_output_file_path(file_path):
     return output_file_ph
 
 
-def write_testbench(output_file_path, entity_name, data_ports, header, libraries):
+def write_testbench(output_file_path, testbench_metadata):
     """
 
     :param output_file_path:
-    :param entity_name: entity name of the selected design
-    :param data_ports: list of ports
-    :param header: header description of the file
-    :param libraries: libraries used
+    :param testbench_metadata: dictionary of the main VHDL module info
+        testbench_metadata["entity_name"]: entity name of the selected design
+        testbench_metadata["generics"]: list of generics
+        testbench_metadata["ports"]: list of ports
+        testbench_metadata["header_description"]: header description of the file
+        testbench_metadata["libraries"]: libraries used
     :return: nothing
     """
+
+    header = testbench_metadata["header_description"]
+    libraries = testbench_metadata["libraries"]
 
     with open(output_file_path, "w") as fd_o:
         for line in header:
@@ -156,19 +215,28 @@ def write_testbench(output_file_path, entity_name, data_ports, header, libraries
             fd_o.write(line + '\n')
         fd_o.write('\n')
 
-        str_body = set_body(entity_name, data_ports)
+        str_body = set_body(testbench_metadata)
 
         for line in str_body:
             fd_o.write(line)
 
 
-def set_body(entity_name, port_data):
+def set_body(testbench_metadata):
     """
+    This is the main function that will write al the testbench code.
 
-    :param entity_name:
-    :param port_data:
+    :param testbench_metadata: dictionary of the main VHDL module info
+        testbench_metadata["entity_name"]: entity name of the selected design
+        testbench_metadata["generics"]: list of generics
+        testbench_metadata["ports"]: list of ports
+        testbench_metadata["header_description"]: header description of the file
+        testbench_metadata["libraries"]: libraries used
     :return: string
     """
+    entity_name = testbench_metadata["entity_name"]
+    generics_data = testbench_metadata["generics"]
+    port_data = testbench_metadata["ports"]
+
     ports_in = list()
     ports_out = list()
     ports_inout = list()
@@ -190,33 +258,66 @@ def set_body(entity_name, port_data):
             ports_inout.append(port)
 
     n_ports = len(port_data)
+    n_generics = len(generics_data)
 
-    str_body = """entity tb_""" + entity_name + """ is
-    end tb_""" + entity_name + """;
+    # entity of the current testbench declaration
+    str_body = """entity tb_""" + entity_name + " is\n"
 
+    if generics_data:
+        str_body += "\tgeneric (\n"
+        generic_cnt = 0
 
-    architecture behavioral of tb_""" + entity_name + """ is
+        for generic in generics_data:
+            generic_cnt += 1
+            str_body += "\t\t" + generic[GENERIC_NAME_ID] + " : " + generic[GENERIC_TYPE_ID] + " := "
+            str_body += generic[GENERIC_VALUE_ID]
+            if generic[GENERIC_UNIT_ID]:
+                str_body += " " + generic[GENERIC_UNIT_ID]
+            if generic_cnt < n_generics:
+                str_body += ";\n"
+        str_body += "\n\t);\n"
+
+    str_body += "end tb_" + entity_name + ";\n\n"
+
+    # architecture of the testbench ---------------------------------------------------------------------------
+    str_body += "architecture behavioral of tb_" + entity_name + """ is
 
     -- component declarations
-    component """ + entity_name + """
-        port(\n"""
+    component """ + entity_name + "\n"
 
+    if generics_data:
+        str_body += "\tgeneric (\n"
+        generic_cnt = 0
+
+        for generic in generics_data:
+            generic_cnt += 1
+            str_body += "\t\t" + generic[GENERIC_NAME_ID] + " : " + generic[GENERIC_TYPE_ID]
+            str_body += " := " + generic[GENERIC_VALUE_ID]
+            if generic[GENERIC_UNIT_ID]:
+                str_body += " " + generic[GENERIC_UNIT_ID]
+            if generic_cnt < n_generics:
+                str_body += ";\n"
+            else:
+                str_body += "\n"
+        str_body += "\t);\n"
+
+    str_body += "\tport(\n"""
 
     # ports declarations
     port_ctr = 0
 
-    str_body += "\t\t\t-- input ports\n"
+    str_body += "\t\t-- input ports\n"
     for port in ports_in:
-        str_body += "\t\t\t" + port[PORT_NAME_ID] + "\t\t: " + port[PORT_DIR_ID] + "\t" + port[PORT_TYPE_ID]
+        str_body += "\t\t" + port[PORT_NAME_ID] + "\t\t: " + port[PORT_DIR_ID] + "\t" + port[PORT_TYPE_ID]
         port_ctr += 1
         if port_ctr < n_ports:
             str_body += ';\n'
         else:
             str_body += '\n'
 
-    str_body += "             -- output ports\n"
+    str_body += "\t\t-- output ports\n"
     for port in ports_out:
-        str_body += "\t\t\t" + port[PORT_NAME_ID] + "\t\t: " + port[PORT_DIR_ID] + "\t" + port[PORT_TYPE_ID]
+        str_body += "\t\t" + port[PORT_NAME_ID] + "\t\t: " + port[PORT_DIR_ID] + "\t" + port[PORT_TYPE_ID]
         port_ctr += 1
         if port_ctr < n_ports:
             str_body += ';\n'
@@ -233,7 +334,7 @@ def set_body(entity_name, port_data):
             else:
                 str_body += '\n'
 
-    str_body += """\t\t);
+    str_body += """\t);
     end component;
 
     -- clock period definition
@@ -266,12 +367,12 @@ def set_body(entity_name, port_data):
             module_signals_body += "\tsignal s_" + port[PORT_NAME_ID] + "\t\t: " + port[PORT_TYPE_ID] + ';\n'
 
     if ports_out:
-        module_signals_body += "\t-- output signals\n"
+        module_signals_body += "\n\t-- output signals\n"
         for port in ports_out:
             module_signals_body += "\tsignal s_" + port[PORT_NAME_ID] + "\t\t: " + port[PORT_TYPE_ID] + ';\n'
 
     if ports_inout:
-        module_signals_body += "\t-- inout signals\n"
+        module_signals_body += "\n\t-- inout signals\n"
         for port in ports_inout:
             module_signals_body += "\tsignal s_" + port[PORT_NAME_ID] + "\t\t: " + port[PORT_TYPE_ID] + ';\n'
 
@@ -283,13 +384,28 @@ def set_body(entity_name, port_data):
         str_body += "\tsignal s_rst_n\t: std_logic := '0';\n"
 
     # adding now all the signals detected
-    str_body += module_signals_body
+    str_body += module_signals_body + "\n"
 
-    str_body += """begin
+    str_body += "begin\n"
 
-    -- instantiation of the Unit under test
-    uut: """ + entity_name + """
-    port map("""
+    str_body += "\t-- instantiation of the Unit under test\n"
+    str_body += "\tuut : entity work." + entity_name + "(" + testbench_metadata["archs"][0] + ")\n"
+
+    if generics_data:
+        str_body += "\tgeneric map(\n"
+        generic_cnt = 0
+
+        for generic in generics_data:
+            generic_cnt += 1
+            str_body += "\t\t" + generic[GENERIC_NAME_ID] + " => " + generic[GENERIC_NAME_ID]
+
+            if generic_cnt < n_generics:
+                str_body += ",\n"
+            else:
+                str_body += "\n"
+        str_body += "\t)\n"
+
+    str_body += "\tport map("
 
     #  -----------------------------------------
     #  entity instantiation
@@ -306,7 +422,7 @@ def set_body(entity_name, port_data):
         else:
             str_body += '\n'
 
-    str_body += "        -- output ports\n"
+    str_body += "\t\t-- output ports\n"
     for port in ports_out:
         str_body += "\t\t" + port[0] + "\t=> " + "s_" + port[0]
         port_ctr += 1
@@ -316,7 +432,7 @@ def set_body(entity_name, port_data):
             str_body += '\n'
 
     if ports_inout:
-        str_body += "        -- inout ports\n"
+        str_body += "\t\t-- inout ports\n"
         for port in ports_inout:
             str_body += "\t\t" + port[0] + "\t=> " + "s_" + port[0]
             port_ctr += 1

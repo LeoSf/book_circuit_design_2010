@@ -1,4 +1,4 @@
-# Ch3. Code structure
+# Ch4. Code structure
 
 ## Examples Index
 * Example 4.1: Using Predefined Scalar Attributes
@@ -8,4 +8,4 @@
 * Example 4.5: Keeping Redundant Registers with preserve and noprune Attributes
 
 ## Proof of Concepts Index
-* PoC: Proff of Concept - alias
+* PoC: alias usage
