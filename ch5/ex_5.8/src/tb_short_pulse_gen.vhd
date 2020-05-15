@@ -22,7 +22,7 @@
 library ieee;
     use ieee.std_logic_1164.all;
     use ieee.numeric_std.all;
-    
+
 entity tb_short_pulse_gen is
 end tb_short_pulse_gen;
 
@@ -32,9 +32,9 @@ architecture behavioral of tb_short_pulse_gen is
     component short_pulse_gen
 	port(
 		-- input ports
-		clk           : in	bit;
+		clk           : in	std_logic;
 		-- output ports
-		short_clk     : out	bit
+		short_clk     : out	std_logic
 	);
     end component;
 
@@ -43,14 +43,15 @@ architecture behavioral of tb_short_pulse_gen is
 
     -- input signals
 	signal s_rst_n	    : std_logic := '0';
-	signal s_clk		: bit := '0';
+	signal s_clk		: std_logic := '0';
 
 	-- output signals
-	signal s_short_clk	: bit := '0';
+	signal s_short_clk	: std_logic := '0';
 
 begin
 	-- instantiation of the Unit under test
-	uut : entity work.short_pulse_gen(short_pulse)
+	-- uut : entity work.short_pulse_gen(short_pulse)
+    uut : short_pulse_gen
 	port map(
 		-- input ports
 		clk	          => s_clk,
