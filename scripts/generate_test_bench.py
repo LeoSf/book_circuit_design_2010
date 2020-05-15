@@ -63,6 +63,8 @@ GENERIC_UNIT_ID = 3     # data position in the regex_generics list
 # regex for architectures names
 regex_arch = re.compile(r'architecture (\w*) of', re.I)
 
+default_libraries = "library ieee;\n\tuse ieee.std_logic_1164.all;\n\tuse ieee.numeric_std.all;"
+
 
 def test_regex(line):
     """
@@ -155,8 +157,6 @@ def generate_test_bench(file_path):
                 if result:
                     arch_names.append(result)
 
-
-
         testbench_metadata["header_description"] = header_description
         testbench_metadata["libraries"] = libraries
         testbench_metadata["entity_name"] = entity_name
@@ -211,8 +211,12 @@ def write_testbench(output_file_path, testbench_metadata):
         for line in header:
             fd_o.write(line + '\n')
 
-        for line in libraries:
-            fd_o.write(line + '\n')
+        if libraries:
+            for line in libraries:
+                fd_o.write(line + '\n')
+        else:
+            fd_o.write(default_libraries)
+            fd_o.write('\n')
         fd_o.write('\n')
 
         str_body = set_body(testbench_metadata)
