@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="tb_leading_zeros_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="tb_leading_zeros" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="200000000fs"></ZoomEndTime>
+      <Cursor1Time time="62603000fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="125"></NameColumnWidth>
+      <ValueColumnWidth column_width="59"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="5" />
+   <wvobject fp_name="/tb_leading_zeros/s_clk" type="logic">
+      <obj_property name="ElementShortName">s_clk</obj_property>
+      <obj_property name="ObjectShortName">s_clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_leading_zeros/s_rst_n" type="logic">
+      <obj_property name="ElementShortName">s_rst_n</obj_property>
+      <obj_property name="ObjectShortName">s_rst_n</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_leading_zeros/s_data" type="array">
+      <obj_property name="ElementShortName">s_data[7:0]</obj_property>
+      <obj_property name="ObjectShortName">s_data[7:0]</obj_property>
+      <obj_property name="Radix">BINARYRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_leading_zeros/s_zeros" type="other">
+      <obj_property name="ElementShortName">s_zeros</obj_property>
+      <obj_property name="ObjectShortName">s_zeros</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_leading_zeros/c_CLK_PERIOD" type="other">
+      <obj_property name="ElementShortName">c_CLK_PERIOD</obj_property>
+      <obj_property name="ObjectShortName">c_CLK_PERIOD</obj_property>
+   </wvobject>
+</wave_config>

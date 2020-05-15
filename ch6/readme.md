@@ -5,6 +5,7 @@
 * Example 6.2: Basic Counter
 * Example 6.3: Shift Register
 * Example 6.4: Carry-Ripple Adder
+* Example 6.5: Leading Zeros
 
 ## Proof of Concepts Index
 * PoC:
