@@ -17,7 +17,7 @@ Version: 1.7
 ------------
 
 TODO:
-    ---
+    -- fail to detect: port   : out integer range 0 to 8);
 
 """
 
@@ -28,7 +28,7 @@ import sys
 testbench_prefix = "tb_"
 
 # regex to split files names and absolute or relative paths
-regex_path = re.compile(r'([\w|\\|//|\:|.]*\\)*(\w*)(.vhd)', re.I)
+regex_path = re.compile(r'([\w|\\|//|\:|.]*[\\|//])*(\w*)(.vhd)', re.I)
 
 # capture all the header description from the source file
 regex_header = re.compile(r'(--.*)', re.I)
@@ -41,7 +41,7 @@ regex_entity = re.compile(r'\s*entity+\s+(\w+)\s+is\s*', re.I)
 
 # regex expression to get all the ports description
 # this gets the current data ports organized as:  port_name, direction, type
-regex_ports = re.compile(r'^\s*(\w+)\s*\:\s*(in|out|inout)\s+([[\w| ]*[\(|\)]*[\w| |*|-]*[\(|\)]{0,1});*', re.I)
+regex_ports = re.compile(r'^\s*(\w+)\s*\:\s*(in|out|inout|buffer)\s+([[\w| ]*[\(|\)]*[\w| |*|-]*[\(|\)]{0,1});*', re.I)
 
 PORT_NAME_ID = 0  # data position in the regex_ports list
 PORT_DIR_ID = 1  # data position in the regex_ports list
@@ -244,6 +244,7 @@ def set_body(testbench_metadata):
     ports_in = list()
     ports_out = list()
     ports_inout = list()
+    ports_buffer = list()
 
     clk_port_name = "clk"
     rst_port_name = "rst_n"
@@ -255,11 +256,14 @@ def set_body(testbench_metadata):
         if port[PORT_DIR_ID] == "in":
             ports_in.append(port)
 
-        if port[PORT_DIR_ID] == "out":
-            ports_out.append(port)
+        if port[PORT_DIR_ID] == "buffer":
+            ports_buffer.append(port)
 
         if port[PORT_DIR_ID] == "inout":
             ports_inout.append(port)
+
+        if port[PORT_DIR_ID] == "out":
+            ports_out.append(port)
 
     n_ports = len(port_data)
     n_generics = len(generics_data)
@@ -319,6 +323,16 @@ def set_body(testbench_metadata):
         else:
             str_body += '\n'
 
+    if ports_buffer:
+        str_body += "\t\t-- buffer ports\n"
+        for port in ports_buffer:
+            str_body += "\t\t" + port[PORT_NAME_ID] + "\t\t: " + port[PORT_DIR_ID] + "\t" + port[PORT_TYPE_ID]
+            port_ctr += 1
+            if port_ctr < n_ports:
+                str_body += ';\n'
+            else:
+                str_body += '\n'
+
     str_body += "\t\t-- output ports\n"
     for port in ports_out:
         str_body += "\t\t" + port[PORT_NAME_ID] + "\t\t: " + port[PORT_DIR_ID] + "\t" + port[PORT_TYPE_ID]
@@ -329,9 +343,9 @@ def set_body(testbench_metadata):
             str_body += '\n'
 
     if ports_inout:
-        str_body += "\t\t\t-- inout ports\n"
+        str_body += "\t\t-- inout ports\n"
         for port in ports_inout:
-            str_body += "\t\t\t" + port[PORT_NAME_ID] + "\t\t: " + port[PORT_DIR_ID] + "\t" + port[PORT_TYPE_ID] + ';\n'
+            str_body += "\t\t" + port[PORT_NAME_ID] + "\t\t: " + port[PORT_DIR_ID] + "\t" + port[PORT_TYPE_ID]
             port_ctr += 1
             if port_ctr < n_ports:
                 str_body += ';\n'
@@ -370,14 +384,19 @@ def set_body(testbench_metadata):
 
             module_signals_body += "\tsignal s_" + port[PORT_NAME_ID] + "\t\t: " + port[PORT_TYPE_ID] + ';\n'
 
-    if ports_out:
-        module_signals_body += "\n\t-- output signals\n"
-        for port in ports_out:
+    if ports_buffer:
+        module_signals_body += "\n\t-- buffer signals\n"
+        for port in ports_buffer:
             module_signals_body += "\tsignal s_" + port[PORT_NAME_ID] + "\t\t: " + port[PORT_TYPE_ID] + ';\n'
 
     if ports_inout:
         module_signals_body += "\n\t-- inout signals\n"
         for port in ports_inout:
+            module_signals_body += "\tsignal s_" + port[PORT_NAME_ID] + "\t\t: " + port[PORT_TYPE_ID] + ';\n'
+
+    if ports_out:
+        module_signals_body += "\n\t-- output signals\n"
+        for port in ports_out:
             module_signals_body += "\tsignal s_" + port[PORT_NAME_ID] + "\t\t: " + port[PORT_TYPE_ID] + ';\n'
 
     # if clock o reset signal are not present, then it will be included
@@ -426,8 +445,8 @@ def set_body(testbench_metadata):
         else:
             str_body += '\n'
 
-    str_body += "\t\t-- output ports\n"
-    for port in ports_out:
+    str_body += "\t\t-- buffer ports\n"
+    for port in ports_buffer:
         str_body += "\t\t" + port[0] + "\t=> " + "s_" + port[0]
         port_ctr += 1
         if port_ctr < n_ports:
@@ -444,6 +463,15 @@ def set_body(testbench_metadata):
                 str_body += ',\n'
             else:
                 str_body += '\n'
+
+    str_body += "\t\t-- output ports\n"
+    for port in ports_out:
+        str_body += "\t\t" + port[0] + "\t=> " + "s_" + port[0]
+        port_ctr += 1
+        if port_ctr < n_ports:
+            str_body += ',\n'
+        else:
+            str_body += '\n'
 
     str_body += "\t);\n\n"
 
@@ -494,8 +522,13 @@ if __name__ == '__main__':
     if len(sys.argv) == 2:
         path_to_file = sys.argv[1]
         generate_test_bench(path_to_file)
+
+        print("Script executed successfully")
+
+    elif len(sys.argv) == 3 and sys.argv[2] == "debug":
+        path_to_file = sys.argv[1]
+        generate_test_bench(path_to_file + ".vhd")
+
     else:
         print("Incorrect number of arguments")
         print('help: python generate_test_bench sample.vhd')
-
-    print("Script executed successfully")
