@@ -17,7 +17,7 @@
 --      15/05/2020  v0.01 File created
 --
 -- Additional Comments:
---
+--  RTL designs don't match spected results.
 ----------------------------------------------------------------------------------
 
 entity flipflop is
@@ -72,8 +72,15 @@ begin
 end architecture;
 
 ---------------------------------
-configuration module_conf of flipflop is
-    for arch3
+configuration module_default_cfg of flipflop is
+    for arch1
     end for;
+
+    -- for arch2
+    -- end for;
+
+    -- for arch3
+    ---- RTL design is (b)
+    -- end for;
 end configuration;
 ---------------------------------

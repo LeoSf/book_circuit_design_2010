@@ -34,8 +34,10 @@ architecture behavioral of tb_flipflop is
 		-- input ports
 		d		: in	bit;
 		clk		: in	bit;
+		-- buffer ports
+		q		: buffer	bit;
 		-- output ports
-		qbar		: out	bit
+		qbar	: out	bit
 	);
     end component;
 
@@ -44,19 +46,24 @@ architecture behavioral of tb_flipflop is
 
     -- input signals
 	signal s_rst_n	: std_logic := '0';
-	signal s_d		: bit;
-	signal s_clk		: bit;
+	signal s_d		: bit := '0';
+	signal s_clk	: bit := '0';
+
+	-- buffer signals
+	signal s_q		: bit;
 
 	-- output signals
-	signal s_qbar		: bit;
+	signal s_qbar	: bit;
 
 begin
 	-- instantiation of the Unit under test
 	uut : entity work.flipflop(arch1)
 	port map(
 		-- input ports
-		d	=> s_d,
-		clk	=> s_clk,
+		d		=> s_d,
+		clk		=> s_clk,
+		-- buffer ports
+		q		=> s_q,
 		-- output ports
 		qbar	=> s_qbar
 	);
@@ -80,6 +87,22 @@ begin
         wait for c_CLK_PERIOD;
 
         -- add code here
+		s_d <= '1';
+		wait for 3 * c_CLK_PERIOD;
+		s_d <= '0';
+		wait for 2 * c_CLK_PERIOD;
+		s_d <= '1';
+		wait for 1 * c_CLK_PERIOD;
+		s_d <= '0';
+		wait for 3 * c_CLK_PERIOD;
+		s_d <= '1';
+		wait for c_CLK_PERIOD;
+		s_d <= '0';
+		wait for c_CLK_PERIOD;
+		s_d <= '1';
+		wait for c_CLK_PERIOD;
+		s_d <= '0';
+		wait for c_CLK_PERIOD;
 
         -- nothing else to do..
         wait for 3 * c_CLK_PERIOD;
@@ -89,4 +112,3 @@ begin
 
 
     end behavioral;
-    
