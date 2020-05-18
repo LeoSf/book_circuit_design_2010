@@ -47,15 +47,16 @@ end entity;
 -- end architecture;
 
 architecture ok of hamm_weight is
-    type oneDimOneDim is array (0 to n-1) of integer range 0 to n;
+    type oneDimOneDim is array (0 to N-1) of integer range 0 to N;
     signal temp: oneDimOneDim;
 
 begin
-    temp(0) <= 0;
+    temp(0) <=  0 when x(0) = '0'
+                else 1;
 
     gen: for i in 1 to n-1 generate
-        temp(i) <= temp(i-1) + 1    when x(i) = '1'
-                                    else temp(i-1);
+        temp(i) <=  temp(i-1) + 1    when x(i) = '1'
+                    else temp(i-1);
     end generate;
 
     y <= temp(n-1);
