@@ -314,14 +314,15 @@ def set_body(testbench_metadata):
     # ports declarations
     port_ctr = 0
 
-    str_body += "\t\t-- input ports\n"
-    for port in ports_in:
-        str_body += "\t\t" + port[PORT_NAME_ID] + "\t\t: " + port[PORT_DIR_ID] + "\t" + port[PORT_TYPE_ID]
-        port_ctr += 1
-        if port_ctr < n_ports:
-            str_body += ';\n'
-        else:
-            str_body += '\n'
+    if ports_in:
+        str_body += "\t\t-- input ports\n"
+        for port in ports_in:
+            str_body += "\t\t" + port[PORT_NAME_ID] + "\t\t: " + port[PORT_DIR_ID] + "\t" + port[PORT_TYPE_ID]
+            port_ctr += 1
+            if port_ctr < n_ports:
+                str_body += ';\n'
+            else:
+                str_body += '\n'
 
     if ports_buffer:
         str_body += "\t\t-- buffer ports\n"
@@ -333,18 +334,19 @@ def set_body(testbench_metadata):
             else:
                 str_body += '\n'
 
-    str_body += "\t\t-- output ports\n"
-    for port in ports_out:
-        str_body += "\t\t" + port[PORT_NAME_ID] + "\t\t: " + port[PORT_DIR_ID] + "\t" + port[PORT_TYPE_ID]
-        port_ctr += 1
-        if port_ctr < n_ports:
-            str_body += ';\n'
-        else:
-            str_body += '\n'
-
     if ports_inout:
         str_body += "\t\t-- inout ports\n"
         for port in ports_inout:
+            str_body += "\t\t" + port[PORT_NAME_ID] + "\t\t: " + port[PORT_DIR_ID] + "\t" + port[PORT_TYPE_ID]
+            port_ctr += 1
+            if port_ctr < n_ports:
+                str_body += ';\n'
+            else:
+                str_body += '\n'
+
+    if ports_out:
+        str_body += "\t\t-- output ports\n"
+        for port in ports_out:
             str_body += "\t\t" + port[PORT_NAME_ID] + "\t\t: " + port[PORT_DIR_ID] + "\t" + port[PORT_TYPE_ID]
             port_ctr += 1
             if port_ctr < n_ports:
@@ -436,23 +438,25 @@ def set_body(testbench_metadata):
     # signals declarations -----------------------------
     port_ctr = 0
 
-    str_body += "\n\t\t-- input ports\n"
-    for port in ports_in:
-        str_body += "\t\t" + port[0] + "\t=> " + "s_" + port[0]
-        port_ctr += 1
-        if port_ctr < n_ports:
-            str_body += ',\n'
-        else:
-            str_body += '\n'
+    if ports_in:
+        str_body += "\n\t\t-- input ports\n"
+        for port in ports_in:
+            str_body += "\t\t" + port[0] + "\t=> " + "s_" + port[0]
+            port_ctr += 1
+            if port_ctr < n_ports:
+                str_body += ',\n'
+            else:
+                str_body += '\n'
 
-    str_body += "\t\t-- buffer ports\n"
-    for port in ports_buffer:
-        str_body += "\t\t" + port[0] + "\t=> " + "s_" + port[0]
-        port_ctr += 1
-        if port_ctr < n_ports:
-            str_body += ',\n'
-        else:
-            str_body += '\n'
+    if ports_buffer:
+        str_body += "\t\t-- buffer ports\n"
+        for port in ports_buffer:
+            str_body += "\t\t" + port[0] + "\t=> " + "s_" + port[0]
+            port_ctr += 1
+            if port_ctr < n_ports:
+                str_body += ',\n'
+            else:
+                str_body += '\n'
 
     if ports_inout:
         str_body += "\t\t-- inout ports\n"
@@ -464,14 +468,15 @@ def set_body(testbench_metadata):
             else:
                 str_body += '\n'
 
-    str_body += "\t\t-- output ports\n"
-    for port in ports_out:
-        str_body += "\t\t" + port[0] + "\t=> " + "s_" + port[0]
-        port_ctr += 1
-        if port_ctr < n_ports:
-            str_body += ',\n'
-        else:
-            str_body += '\n'
+    if ports_out:
+        str_body += "\t\t-- output ports\n"
+        for port in ports_out:
+            str_body += "\t\t" + port[0] + "\t=> " + "s_" + port[0]
+            port_ctr += 1
+            if port_ctr < n_ports:
+                str_body += ',\n'
+            else:
+                str_body += '\n'
 
     str_body += "\t);\n\n"
 
