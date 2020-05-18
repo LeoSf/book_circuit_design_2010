@@ -37,7 +37,7 @@ regex_header = re.compile(r'(--.*)', re.I)
 regex_libraries = re.compile(r'(library\s\w*;| *use\s\w*.\w*.all;)', re.I)
 
 # regex expression to get the entity name
-regex_entity = re.compile(r'\s*entity+\s+(\w+)\s+is\s*', re.I)
+regex_entity = re.compile(r'^\s*entity+\s+(\w+)\s+is\s*', re.I)
 
 # regex expression to get all the ports description
 # this gets the current data ports organized as:  port_name, direction, type
@@ -61,7 +61,7 @@ GENERIC_VALUE_ID = 2    # data position in the regex_generics list
 GENERIC_UNIT_ID = 3     # data position in the regex_generics list
 
 # regex for architectures names
-regex_arch = re.compile(r'architecture (\w*) of', re.I)
+regex_arch = re.compile(r'^\s*architecture (\w*) of', re.I)
 
 default_libraries = "library ieee;\n\tuse ieee.std_logic_1164.all;\n\tuse ieee.numeric_std.all;"
 
