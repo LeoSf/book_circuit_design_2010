@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="tb_shift_register_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="my_declarations" />
+            <top_module name="tb_shift_register" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="38658334fs"></ZoomStartTime>
+      <ZoomEndTime time="106708335fs"></ZoomEndTime>
+      <Cursor1Time time="55000000fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="112"></NameColumnWidth>
+      <ValueColumnWidth column_width="58"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="18" />
+   <wvobject fp_name="/tb_shift_register/s_rst_n" type="logic">
+      <obj_property name="ElementShortName">s_rst_n</obj_property>
+      <obj_property name="ObjectShortName">s_rst_n</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_shift_register/s_clk" type="logic">
+      <obj_property name="ElementShortName">s_clk</obj_property>
+      <obj_property name="ObjectShortName">s_clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_shift_register/s_load" type="logic">
+      <obj_property name="ElementShortName">s_load</obj_property>
+      <obj_property name="ObjectShortName">s_load</obj_property>
+      <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_shift_register/s_x" type="array">
+      <obj_property name="ElementShortName">s_x[7:0]</obj_property>
+      <obj_property name="ObjectShortName">s_x[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_shift_register/s_d" type="array">
+      <obj_property name="ElementShortName">s_d[0:3,7:0]</obj_property>
+      <obj_property name="ObjectShortName">s_d[0:3,7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_shift_register/s_y" type="array">
+      <obj_property name="ElementShortName">s_y[7:0]</obj_property>
+      <obj_property name="ObjectShortName">s_y[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_shift_register/M" type="other">
+      <obj_property name="ElementShortName">M</obj_property>
+      <obj_property name="ObjectShortName">M</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_shift_register/N" type="other">
+      <obj_property name="ElementShortName">N</obj_property>
+      <obj_property name="ObjectShortName">N</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_shift_register/c_CLK_PERIOD" type="other">
+      <obj_property name="ElementShortName">c_CLK_PERIOD</obj_property>
+      <obj_property name="ObjectShortName">c_CLK_PERIOD</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_shift_register/uut/clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+      <obj_property name="CustomSignalColor">#FFFF00</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_shift_register/uut/load" type="logic">
+      <obj_property name="ElementShortName">load</obj_property>
+      <obj_property name="ObjectShortName">load</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_shift_register/uut/x" type="array">
+      <obj_property name="ElementShortName">x[7:0]</obj_property>
+      <obj_property name="ObjectShortName">x[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_shift_register/uut/d" type="array">
+      <obj_property name="ElementShortName">d[0:3,7:0]</obj_property>
+      <obj_property name="ObjectShortName">d[0:3,7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_shift_register/uut/y" type="array">
+      <obj_property name="ElementShortName">y[7:0]</obj_property>
+      <obj_property name="ObjectShortName">y[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_shift_register/uut/u" type="array">
+      <obj_property name="ElementShortName">u[0:4,7:0]</obj_property>
+      <obj_property name="ObjectShortName">u[0:4,7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_shift_register/uut/v" type="array">
+      <obj_property name="ElementShortName">v[0:3,7:0]</obj_property>
+      <obj_property name="ObjectShortName">v[0:3,7:0]</obj_property>
+      <wvobject fp_name="/tb_shift_register/uut/v[0]" type="array">
+         <obj_property name="ElementShortName">[0,7:0]</obj_property>
+         <obj_property name="ObjectShortName">[0,7:0]</obj_property>
+         <obj_property name="Radix">BINARYRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_shift_register/uut/v[1]" type="array">
+         <obj_property name="ElementShortName">[1,7:0]</obj_property>
+         <obj_property name="ObjectShortName">[1,7:0]</obj_property>
+         <obj_property name="Radix">BINARYRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_shift_register/uut/v[2]" type="array">
+         <obj_property name="ElementShortName">[2,7:0]</obj_property>
+         <obj_property name="ObjectShortName">[2,7:0]</obj_property>
+         <obj_property name="Radix">BINARYRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_shift_register/uut/v[3]" type="array">
+         <obj_property name="ElementShortName">[3,7:0]</obj_property>
+         <obj_property name="ObjectShortName">[3,7:0]</obj_property>
+         <obj_property name="Radix">BINARYRADIX</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="/tb_shift_register/uut/M" type="other">
+      <obj_property name="ElementShortName">M</obj_property>
+      <obj_property name="ObjectShortName">M</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_shift_register/uut/N" type="other">
+      <obj_property name="ElementShortName">N</obj_property>
+      <obj_property name="ObjectShortName">N</obj_property>
+   </wvobject>
+</wave_config>

@@ -41,7 +41,7 @@ regex_entity = re.compile(r'^\s*entity+\s+(\w+)\s+is\s*', re.I)
 
 # regex expression to get all the ports description
 # this gets the current data ports organized as:  port_name, direction, type
-regex_ports = re.compile(r'^\s*(\w+)\s*\:\s*(in|out|inout|buffer)\s+([[\w| ]*[\(|\)]*[\w| |*|-]*[\(|\)]{0,1});*', re.I)
+regex_ports = re.compile(r'^\s*(\w+)\s*\:\s*(in|out|inout|buffer)\s+([[\w| ]*[\(|\)]*[\w| |*|,|-]*[\(|\)]{0,1});*', re.I)
 
 PORT_NAME_ID = 0  # data position in the regex_ports list
 PORT_DIR_ID = 1  # data position in the regex_ports list
