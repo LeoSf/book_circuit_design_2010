@@ -7,4 +7,5 @@
 * Example 8.4: Shift Register with COMPONENT and GENERATE
 
 ## Proof of Concepts Index
-* PoC :
+* PoC : configuration (simulation is not working properly)
+-- entity in component instantiation with name changed
