@@ -57,6 +57,29 @@ Examples Index
 * Example 6.1: DFFs with Reset and Clear
 * Example 6.2: Basic Counter
 * Example 6.3: Shift Register
+* Example 6.4: Carry-Ripple Adder
+* Example 6.5: Leading Zeros
+* Example 6.6: Slow 0-to-9 Counter with SSD
+### Ch7. SIGNAL and VARIABLE
+Examples Index
+* Example 7.1: Counter with SHARED VARIABLE
+* Example 7.2: Analysis (not present here)
+* Example 7.3: Counters with SIGNAL and VARIABLE
+* Example 7.4: DFF with q and qbar
+* Example 7.6: Dual-Edge Flip-Flop
+* Example 7.7: Generic Hamming Weight with Concurrent Code
+Proof of Concepts Index
+* PoC 7.7: parity detector
+### Ch8. PACKAGE and COMPONENT
+Examples Index
+* Example 8.1: PACKAGE with FUNCTION and Deferred CONSTANT
+* Example 8.2: Circular Shift Register with COMPONENT
+* Example 8.3: Parity Detector with COMPONENT and GENERIC MAP
+* Example 8.4: Shift Register with COMPONENT and GENERATE
+* Example 8.5: Latch Implemented with a Guarded BLOCK (not synthesized)
+Proof of Concepts Index
+* PoC : configuration (simulation is not working properly)
+-- entity in component instantiation with name changed
 
 
 Notes:
