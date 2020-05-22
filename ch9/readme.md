@@ -3,6 +3,7 @@
 ## Examples Index
 * Example 9.1: FUNCTION max in an ARCHITECTURE (not fully working)
 * Example 9.2: FUNCTION order_and_fill in a PACKAGE
+* Example 9.3: FUNCTION slv_to_integer in an ENTITY
 
 ## Proof of Concepts Index
-* PoC :
+* PoC :  

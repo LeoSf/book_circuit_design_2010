@@ -11,13 +11,15 @@ TBD
 ## Table of Content
 TBD
 
+## I CIRCUIT-LEVEL VHDL
 ### Ch1. Circuit-Level VHDL
+
 ### Ch2. Code structure
 * Example 2.1: Compare-Add Circuit
 * Example 2.2: D-type Flip Flop (DFF)
 * Example 2.3: Registered Comp-Add Circuit
 * Example 2.4: Generic Address Decoder
-### Ch3. Code structure
+### Ch3. Data Types
 Examples Index
 * Example 3.1: Tri-state Buffer
 * Example 3.2: Circuit with "Don’t Care" Outputs
@@ -32,7 +34,7 @@ Proof of Concepts Index
 * PoC: fixed point
 * PoC: floating point
 * PoC: Records
-### Ch4. Code structure
+### Ch4. Operators and Attributes
 Examples Index
 * Example 4.1: Using Predefined Scalar Attributes
 * Example 4.2: DFF with Several Event-Based Attributes
@@ -70,6 +72,8 @@ Examples Index
 * Example 7.7: Generic Hamming Weight with Concurrent Code
 Proof of Concepts Index
 * PoC 7.7: parity detector
+
+## II SYSTEM-LEVEL VHDL
 ### Ch8. PACKAGE and COMPONENT
 Examples Index
 * Example 8.1: PACKAGE with FUNCTION and Deferred CONSTANT
