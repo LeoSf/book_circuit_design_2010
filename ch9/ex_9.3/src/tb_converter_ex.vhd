@@ -3,7 +3,7 @@
 -- Engineer:            Leandro D. Medus
 --
 -- Create Date:         18:17:00 20/05/2020 (dd/mm/yyyy)
--- Design Name:         FUNCTION slv_to_integer in an ENTITY
+-- Design Name:         testbench: FUNCTION slv_to_integer in an ENTITY
 -- Module Name:         converter_ex - Behavioral
 -- Project Name:        ex_9.3
 -- Target Devices:      Basys 3
@@ -47,8 +47,8 @@ architecture behavioral of tb_module is
     signal s_rst_n  : std_logic := '0';
 
     --Output signals
-    signal s_a_gt_b : std_logic;
-    signal s_sum    : integer;
+    signal s_vector     : std_logic_vector(9 downto 0) := (others => '1');
+    signal s_integer    : integer := 0;
 
 begin
 
@@ -76,6 +76,11 @@ begin
         wait for c_CLK_PERIOD;
 
         -- thing to do here
+        s_integer <= slv_to_integer(s_vector);
+        wait for c_CLK_PERIOD;
+
+        wait for 10 * c_CLK_PERIOD;
+
 
         report "[msg] Testbench end." severity failure ;
     end process;
