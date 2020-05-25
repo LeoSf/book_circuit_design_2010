@@ -75,7 +75,13 @@ begin
 
         wait for c_CLK_PERIOD;
 
-        -- thing to do here
+        -- things to do here
+        s_integer <= slv_to_integer(s_vector);
+        wait for c_CLK_PERIOD;
+
+        s_vector(4) <= '-';
+        wait for c_CLK_PERIOD;
+
         s_integer <= slv_to_integer(s_vector);
         wait for c_CLK_PERIOD;
 
