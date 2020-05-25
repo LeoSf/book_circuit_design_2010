@@ -42,7 +42,7 @@ package body converter_pkg is
     return integer is
         -- variables declarations
         alias ss        : std_logic_vector(1 to s'length) is s;
-        variable result : integer range 0 to 2**s'length-1;
+        variable result : integer range 0 to (2**s'length)-1;
     begin
         result := 0;
         for i in 1 to s'length loop

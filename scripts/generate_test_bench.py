@@ -18,7 +18,7 @@ Version: 1.7
 
 TODO:
     -- fail to detect: port   : out integer range 0 to 8);
-
+this happen when appear as the las port in the entity followed by ");"
 """
 
 import re
