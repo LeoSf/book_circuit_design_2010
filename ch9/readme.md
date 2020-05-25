@@ -6,6 +6,7 @@
 * Example 9.3: FUNCTION slv_to_integer in an ENTITY
 * Example 9.4: PROCEDURE min_max in a PACKAGE
 * Example 9.5: Overloaded "+" Operator
+* Example 9.6: Non-overloaded "AND" Operator
 
 ## Proof of Concepts Index
 * PoC :  
