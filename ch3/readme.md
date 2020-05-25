@@ -1,4 +1,4 @@
-# Ch3. Code structure
+# Ch3. Data Types
 
 ## Examples Index
 * Example 3.1: Tri-state Buffer
