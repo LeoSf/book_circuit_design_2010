@@ -54,6 +54,7 @@ architecture testbench of tb_reg_mux is
 
 begin
     ---dut instantiation:-------
+    -- dut : entity work.reg_mux(reg_mux)
     dut : reg_mux
     port map (
         -- input ports
