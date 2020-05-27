@@ -9,6 +9,7 @@
 -- same as ex_10.4 but the project is configured for the post-implementation timing simulation
 * Example 10.6: Type IV Testbench for a Registered Mux
 * Example 10.7: Type IV Testbench with a Record Type
+* Example 10.8: Type IV Testbench with a Data File
 
 ## Proof of Concepts Index
 * PoC :  
