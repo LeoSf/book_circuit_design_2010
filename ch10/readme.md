@@ -7,6 +7,7 @@
 * Example 10.4: Type I Testbench for a Registered Mux
 * Example 10.5: Type II Testbench for a Registered Mux
 -- same as ex_10.4 but the project is configured for the post-implementation timing simulation
+* Example 10.6: Type IV Testbench for a Registered Mux
 
 ## Proof of Concepts Index
 * PoC :  
