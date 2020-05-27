@@ -5,6 +5,8 @@
 * Example 10.2: Reading Values from a File
 * Example 10.3: Stimuli Generation
 * Example 10.4: Type I Testbench for a Registered Mux
+* Example 10.5: Type II Testbench for a Registered Mux
+-- same as ex_10.4 but the project is configured for the post-implementation timing simulation
 
 ## Proof of Concepts Index
 * PoC :  
