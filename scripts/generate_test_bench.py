@@ -19,6 +19,7 @@ Version: 1.7
 TODO:
     -- fail to detect: port   : out integer range 0 to 8);
 this happen when appear as the las port in the entity followed by ");"
+
 """
 
 import re
@@ -146,7 +147,7 @@ def generate_test_bench(file_path):
                     data_ports.append(result)
 
                 # end of the entity description
-                if "end" in line:
+                if ("end " + entity_name in line) or ("end entity" in line):
                     entity_complete = True
 
             if entity_complete:
