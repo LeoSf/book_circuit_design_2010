@@ -2,6 +2,7 @@
 
 ## Examples Index
 * Example 11.1: Vending-Machine Controller
+* Example 11.2: Glitch-Free Vending-Machine Controller
 
 ## Proof of Concepts Index
 * PoC :  
