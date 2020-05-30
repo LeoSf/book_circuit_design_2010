@@ -39,9 +39,9 @@ architecture behavioral of tb_vending_machine_glitch_free is
 		dime_in       : in	std_logic;
 		quarter_in    : in	std_logic;
 		-- buffer ports
-		-- candy_out     : buffer	std_logic;
-		-- nickel_out    : buffer	std_logic;
-		-- dime_out      : buffer	std_logic;
+		candy_out     : buffer	std_logic;
+		nickel_out    : buffer	std_logic;
+		dime_out      : buffer	std_logic;
 		-- output ports
 		new_candy_out : out	std_logic;
 		new_nickel_out: out	std_logic;
@@ -63,9 +63,9 @@ architecture behavioral of tb_vending_machine_glitch_free is
 	signal s_quarter_in		: std_logic;
 
 	-- buffer signals
-	-- signal s_candy_out		: std_logic;
-	-- signal s_nickel_out		: std_logic;
-	-- signal s_dime_out		: std_logic;
+	signal s_candy_out		: std_logic;
+	signal s_nickel_out		: std_logic;
+	signal s_dime_out		: std_logic;
 
 	-- output signals
 	signal s_new_candy_out		: std_logic;
@@ -97,9 +97,9 @@ begin
 		dime_in	      => s_dime_in,
 		quarter_in	  => s_quarter_in,
 		-- buffer ports
-		-- candy_out     => s_candy_out,
-		-- nickel_out    => s_nickel_out,
-		-- dime_out      => s_dime_out,
+		candy_out     => s_candy_out,
+		nickel_out    => s_nickel_out,
+		dime_out      => s_dime_out,
 		-- output ports
 		new_candy_out	=> s_new_candy_out,
 		new_nickel_out	=> s_new_nickel_out,

@@ -33,9 +33,9 @@ entity vending_machine_glitch_free is
         dime_in	    : in std_logic;
         quarter_in	: in std_logic;
         -- output ports
-        -- candy_out	: buffer std_logic;
-        -- nickel_out	: buffer std_logic;
-        -- dime_out	: buffer std_logic;
+        candy_out	: buffer std_logic;
+        nickel_out	: buffer std_logic;
+        dime_out	: buffer std_logic;
         -- new un-glitched outputs
         new_candy_out	: out std_logic;
         new_nickel_out	: out std_logic;
@@ -57,11 +57,9 @@ architecture fsm of vending_machine_glitch_free is
     -- [Synth 8-2816] unknown character 's' in enumeration encoding is  considered 'X' ["D:/Repos/FPGA/book_circuit_design_2010/ch11/ex_11.2/src/vending_machine_glitch_free.vhd":51]
     -- [Synth 8-1950] enum_encoding attribute specifies incorrect number of valid encoding values for type state ; encoding ignored ["D:/Repos/FPGA/book_circuit_design_2010/ch11/ex_11.2/src/vending_machine_glitch_free.vhd":51]
 
-
-
-    signal candy_out	: std_logic;
-    signal nickel_out	: std_logic;
-    signal dime_out 	: std_logic;
+    -- signal candy_out	: std_logic;
+    -- signal nickel_out	: std_logic;
+    -- signal dime_out 	: std_logic;
 
 begin
     ----lower section of fsm:-----------
