@@ -5,4 +5,5 @@
 * Example 11.2: Glitch-Free Vending-Machine Controller
 
 ## Proof of Concepts Index
-* PoC :  
+* PoC :  poc_timing
+* PoC :  poc_glitch
