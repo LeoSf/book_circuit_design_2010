@@ -18,7 +18,7 @@
 --
 -- Additional Comments:
 --      After running a post-implementation timing simulation, a glitch in
---      s_dime_out can be seen.
+--      s_dime_out can be seen. (from state 3 to 8: st15 to st15)
 ----------------------------------------------------------------------------------
 library ieee;
 use ieee.std_logic_1164.all;
