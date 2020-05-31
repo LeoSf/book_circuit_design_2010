@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="tb_timed_machine_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="tb_timed_machine" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="152815125fs"></ZoomStartTime>
+      <ZoomEndTime time="1457436976fs"></ZoomEndTime>
+      <Cursor1Time time="1240000000fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="112"></NameColumnWidth>
+      <ValueColumnWidth column_width="58"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="9" />
+   <wvobject fp_name="/tb_timed_machine/s_clk" type="logic">
+      <obj_property name="ElementShortName">s_clk</obj_property>
+      <obj_property name="ObjectShortName">s_clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_timed_machine/s_rst" type="logic">
+      <obj_property name="ElementShortName">s_rst</obj_property>
+      <obj_property name="ObjectShortName">s_rst</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_timed_machine/s_x" type="logic">
+      <obj_property name="ElementShortName">s_x</obj_property>
+      <obj_property name="ObjectShortName">s_x</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_timed_machine/s_dbg_count" type="other">
+      <obj_property name="ElementShortName">s_dbg_count</obj_property>
+      <obj_property name="ObjectShortName">s_dbg_count</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_timed_machine/uut/pr_state" type="other">
+      <obj_property name="ElementShortName">pr_state</obj_property>
+      <obj_property name="ObjectShortName">pr_state</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_timed_machine/s_y" type="logic">
+      <obj_property name="ElementShortName">s_y</obj_property>
+      <obj_property name="ObjectShortName">s_y</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_timed_machine/t1" type="other">
+      <obj_property name="ElementShortName">t1</obj_property>
+      <obj_property name="ObjectShortName">t1</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_timed_machine/t2" type="other">
+      <obj_property name="ElementShortName">t2</obj_property>
+      <obj_property name="ObjectShortName">t2</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_timed_machine/c_CLK_PERIOD" type="other">
+      <obj_property name="ElementShortName">c_CLK_PERIOD</obj_property>
+      <obj_property name="ObjectShortName">c_CLK_PERIOD</obj_property>
+   </wvobject>
+</wave_config>

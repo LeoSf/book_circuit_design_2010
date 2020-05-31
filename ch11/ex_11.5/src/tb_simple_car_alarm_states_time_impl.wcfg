@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="tb_simple_car_alarm_states_time_impl.wdb" id="1">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="tb_simple_car_alarm_states" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="1408816856fs"></ZoomEndTime>
+      <Cursor1Time time="753647000fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="244"></NameColumnWidth>
+      <ValueColumnWidth column_width="140"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="17" />
+   <wvobject fp_name="/tb_simple_car_alarm_states/s_clk" type="logic">
+      <obj_property name="ElementShortName">s_clk</obj_property>
+      <obj_property name="ObjectShortName">s_clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_simple_car_alarm_states/s_rst" type="logic">
+      <obj_property name="ElementShortName">s_rst</obj_property>
+      <obj_property name="ObjectShortName">s_rst</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_simple_car_alarm_states/s_remote" type="logic">
+      <obj_property name="ElementShortName">s_remote</obj_property>
+      <obj_property name="ObjectShortName">s_remote</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_simple_car_alarm_states/s_sensors" type="logic">
+      <obj_property name="ElementShortName">s_sensors</obj_property>
+      <obj_property name="ObjectShortName">s_sensors</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_simple_car_alarm_states/s_siren" type="logic">
+      <obj_property name="ElementShortName">s_siren</obj_property>
+      <obj_property name="ObjectShortName">s_siren</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_simple_car_alarm_states/c_CLK_PERIOD" type="other">
+      <obj_property name="ElementShortName">c_CLK_PERIOD</obj_property>
+      <obj_property name="ObjectShortName">c_CLK_PERIOD</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_simple_car_alarm_states/uut/\FSM_onehot_pr_state[0]_i_1_n_0 " type="logic">
+      <obj_property name="ElementShortName">\FSM_onehot_pr_state[0]_i_1_n_0 </obj_property>
+      <obj_property name="ObjectShortName">\FSM_onehot_pr_state[0]_i_1_n_0 </obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_simple_car_alarm_states/uut/\FSM_onehot_pr_state[1]_i_1_n_0 " type="logic">
+      <obj_property name="ElementShortName">\FSM_onehot_pr_state[1]_i_1_n_0 </obj_property>
+      <obj_property name="ObjectShortName">\FSM_onehot_pr_state[1]_i_1_n_0 </obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_simple_car_alarm_states/uut/\FSM_onehot_pr_state[2]_i_1_n_0 " type="logic">
+      <obj_property name="ElementShortName">\FSM_onehot_pr_state[2]_i_1_n_0 </obj_property>
+      <obj_property name="ObjectShortName">\FSM_onehot_pr_state[2]_i_1_n_0 </obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_simple_car_alarm_states/uut/\FSM_onehot_pr_state[3]_i_1_n_0 " type="logic">
+      <obj_property name="ElementShortName">\FSM_onehot_pr_state[3]_i_1_n_0 </obj_property>
+      <obj_property name="ObjectShortName">\FSM_onehot_pr_state[3]_i_1_n_0 </obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_simple_car_alarm_states/uut/\FSM_onehot_pr_state[4]_i_1_n_0 " type="logic">
+      <obj_property name="ElementShortName">\FSM_onehot_pr_state[4]_i_1_n_0 </obj_property>
+      <obj_property name="ObjectShortName">\FSM_onehot_pr_state[4]_i_1_n_0 </obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_simple_car_alarm_states/uut/\FSM_onehot_pr_state[5]_i_1_n_0 " type="logic">
+      <obj_property name="ElementShortName">\FSM_onehot_pr_state[5]_i_1_n_0 </obj_property>
+      <obj_property name="ObjectShortName">\FSM_onehot_pr_state[5]_i_1_n_0 </obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_simple_car_alarm_states/uut/\FSM_onehot_pr_state_reg_n_0_[0] " type="logic">
+      <obj_property name="ElementShortName">\FSM_onehot_pr_state_reg_n_0_[0] </obj_property>
+      <obj_property name="ObjectShortName">\FSM_onehot_pr_state_reg_n_0_[0] </obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_simple_car_alarm_states/uut/\FSM_onehot_pr_state_reg_n_0_[1] " type="logic">
+      <obj_property name="ElementShortName">\FSM_onehot_pr_state_reg_n_0_[1] </obj_property>
+      <obj_property name="ObjectShortName">\FSM_onehot_pr_state_reg_n_0_[1] </obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_simple_car_alarm_states/uut/\FSM_onehot_pr_state_reg_n_0_[2] " type="logic">
+      <obj_property name="ElementShortName">\FSM_onehot_pr_state_reg_n_0_[2] </obj_property>
+      <obj_property name="ObjectShortName">\FSM_onehot_pr_state_reg_n_0_[2] </obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_simple_car_alarm_states/uut/\FSM_onehot_pr_state_reg_n_0_[4] " type="logic">
+      <obj_property name="ElementShortName">\FSM_onehot_pr_state_reg_n_0_[4] </obj_property>
+      <obj_property name="ObjectShortName">\FSM_onehot_pr_state_reg_n_0_[4] </obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_simple_car_alarm_states/uut/\FSM_onehot_pr_state_reg_n_0_[5] " type="logic">
+      <obj_property name="ElementShortName">\FSM_onehot_pr_state_reg_n_0_[5] </obj_property>
+      <obj_property name="ObjectShortName">\FSM_onehot_pr_state_reg_n_0_[5] </obj_property>
+   </wvobject>
+</wave_config>

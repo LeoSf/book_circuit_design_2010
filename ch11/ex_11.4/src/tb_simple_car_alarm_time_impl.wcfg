@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="tb_simple_car_alarm_time_impl.wdb" id="1">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="tb_simple_car_alarm" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="983000001fs"></ZoomEndTime>
+      <Cursor1Time time="57000000fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="147"></NameColumnWidth>
+      <ValueColumnWidth column_width="78"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="9" />
+   <wvobject fp_name="/tb_simple_car_alarm/s_clk" type="logic">
+      <obj_property name="ElementShortName">s_clk</obj_property>
+      <obj_property name="ObjectShortName">s_clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_simple_car_alarm/s_rst" type="logic">
+      <obj_property name="ElementShortName">s_rst</obj_property>
+      <obj_property name="ObjectShortName">s_rst</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_simple_car_alarm/s_remote" type="logic">
+      <obj_property name="ElementShortName">s_remote</obj_property>
+      <obj_property name="ObjectShortName">s_remote</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_simple_car_alarm/s_sensors" type="logic">
+      <obj_property name="ElementShortName">s_sensors</obj_property>
+      <obj_property name="ObjectShortName">s_sensors</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_simple_car_alarm/uut/flag" type="logic">
+      <obj_property name="ElementShortName">flag</obj_property>
+      <obj_property name="ObjectShortName">flag</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_simple_car_alarm/uut/pr_state" type="array">
+      <obj_property name="ElementShortName">pr_state[1:0]</obj_property>
+      <obj_property name="ObjectShortName">pr_state[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_simple_car_alarm/s_siren" type="logic">
+      <obj_property name="ElementShortName">s_siren</obj_property>
+      <obj_property name="ObjectShortName">s_siren</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_simple_car_alarm/uut/nx_state" type="array">
+      <obj_property name="ElementShortName">nx_state[1:0]</obj_property>
+      <obj_property name="ObjectShortName">nx_state[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_simple_car_alarm/c_CLK_PERIOD" type="other">
+      <obj_property name="ElementShortName">c_CLK_PERIOD</obj_property>
+      <obj_property name="ObjectShortName">c_CLK_PERIOD</obj_property>
+   </wvobject>
+</wave_config>

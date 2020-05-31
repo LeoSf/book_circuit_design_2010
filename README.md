@@ -96,6 +96,11 @@ Examples Index
 * Example 10.7: Type IV Testbench with a Record Type
 * Example 10.8: Type IV Testbench with a Data File
 
+## III EXTENDED AND ADVANCED DESIGNS
+
+### Ch11. VHDL Design of State Machines
+Examples Index
+
 Notes:
 
 ``tcl
