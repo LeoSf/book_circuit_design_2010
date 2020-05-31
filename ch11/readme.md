@@ -8,6 +8,7 @@
 * Example 11.5: Car Alarm with Bypasses Prevented by Additional States
 * Example 11.6: FSM with Embedded Timer
 * Example 11.7: Traffic-Light Controller
+* Example 11.8: Pushbutton Sequence Detector
 
 
 ## Proof of Concepts Index
