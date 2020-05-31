@@ -5,6 +5,8 @@
 * Example 11.2: Glitch-Free Vending-Machine Controller
 * Example 11.3: Zero-to-Nine Counter
 * Example 11.4: Car Alarm with Bypasses Prevented by a Flag
+* Example 11.5: Car Alarm with Bypasses Prevented by Additional States
+
 
 ## Proof of Concepts Index
 * PoC :  poc_timing
