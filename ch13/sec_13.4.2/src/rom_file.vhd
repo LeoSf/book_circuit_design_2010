@@ -2,10 +2,10 @@
 -- Company:             None
 -- Engineer:            Leandro D. Medus
 --
--- Create Date:         18:17:00 05/06/2020 (dd/mm/yyyy)
+-- Create Date:         18:17:00 08/08/2020 (dd/mm/yyyy)
 -- Design Name:         ROM Design
--- Module Name:         rom - Behavioral
--- Project Name:        ex_13.4
+-- Module Name:         rom_file - Behavioral
+-- Project Name:        ex_13.4.2
 -- Target Devices:      Basys 3
 -- Tool versions:       Vivado 2019.1
 -- Description:
@@ -17,7 +17,7 @@
 --      05/06/2020  v0.01 File created
 --
 -- Additional Comments:
---
+--  PENDING...
 ----------------------------------------------------------------------------------
 library ieee;
 use ieee.std_logic_1164.all;
@@ -33,17 +33,10 @@ end rom;
 architecture rom of rom is
 
     signal reg_address: integer range 0 to 15;
-
     type memory is array (0 to 15) of std_logic_vector(7 downto 0);
-    constant myrom : memory := (
-        2 => "11111111", --255
-        3 => "00011010", --26
-        4 => "00000101", --5
-        5 => "01010000", --80
-        6 => "10110000", --176
-        15=> "00010001", --17
-        others => "00000000"
-    );
+    signal myrom : memory;
+    attribute ram_init_file: string;
+    attribute ram_init_file of rom : signal is "mem_data.coe";
 
 begin
     --register the address:----------
