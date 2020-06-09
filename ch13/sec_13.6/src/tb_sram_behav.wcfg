@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="tb_sram_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="tb_sram" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="5586200000fs"></ZoomStartTime>
+      <ZoomEndTime time="5809000001fs"></ZoomEndTime>
+      <Cursor1Time time="2460000000fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="152"></NameColumnWidth>
+      <ValueColumnWidth column_width="80"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="13" />
+   <wvobject fp_name="/tb_sram/s_clk" type="logic">
+      <obj_property name="ElementShortName">s_clk</obj_property>
+      <obj_property name="ObjectShortName">s_clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_sram/s_rst" type="logic">
+      <obj_property name="ElementShortName">s_rst</obj_property>
+      <obj_property name="ObjectShortName">s_rst</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_sram/s_d" type="array">
+      <obj_property name="ElementShortName">s_d[15:0]</obj_property>
+      <obj_property name="ObjectShortName">s_d[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_sram/s_nce" type="logic">
+      <obj_property name="ElementShortName">s_nce</obj_property>
+      <obj_property name="ObjectShortName">s_nce</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_sram/s_nwe" type="logic">
+      <obj_property name="ElementShortName">s_nwe</obj_property>
+      <obj_property name="ObjectShortName">s_nwe</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_sram/s_noe" type="logic">
+      <obj_property name="ElementShortName">s_noe</obj_property>
+      <obj_property name="ObjectShortName">s_noe</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_sram/s_nub" type="logic">
+      <obj_property name="ElementShortName">s_nub</obj_property>
+      <obj_property name="ObjectShortName">s_nub</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_sram/s_nlb" type="logic">
+      <obj_property name="ElementShortName">s_nlb</obj_property>
+      <obj_property name="ObjectShortName">s_nlb</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_sram/s_a" type="array">
+      <obj_property name="ElementShortName">s_a[17:0]</obj_property>
+      <obj_property name="ObjectShortName">s_a[17:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_sram/s_test" type="array">
+      <obj_property name="ElementShortName">s_test[7:0]</obj_property>
+      <obj_property name="ObjectShortName">s_test[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_sram/s_we_test" type="logic">
+      <obj_property name="ElementShortName">s_we_test</obj_property>
+      <obj_property name="ObjectShortName">s_we_test</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_sram/fclk" type="other">
+      <obj_property name="ElementShortName">fclk</obj_property>
+      <obj_property name="ObjectShortName">fclk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_sram/c_CLK_PERIOD" type="other">
+      <obj_property name="ElementShortName">c_CLK_PERIOD</obj_property>
+      <obj_property name="ObjectShortName">c_CLK_PERIOD</obj_property>
+   </wvobject>
+</wave_config>
