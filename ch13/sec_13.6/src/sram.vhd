@@ -26,8 +26,8 @@ library ieee;
 
 entity sram is
     generic (
-        -- fclk: natural := 50_000_000
-        fclk: natural := 100
+        fclk: natural := 50_000_000
+        -- fclk: natural := 100
     );
 	port (
         -- input ports
