@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="tb_fast_serializer_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="tb_fast_serializer" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="59913000000fs"></ZoomStartTime>
+      <ZoomEndTime time="60529500001fs"></ZoomEndTime>
+      <Cursor1Time time="60499500000fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="152"></NameColumnWidth>
+      <ValueColumnWidth column_width="60"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="13" />
+   <wave_markers>
+      <marker time="200000000" label="" />
+      <marker time="100000000" label="" />
+      <marker time="60000000000" label="" />
+      <marker time="60100000000" label="" />
+      <marker time="60200000000" label="" />
+      <marker time="60299500000" label="" />
+      <marker time="60400000000" label="" />
+      <marker time="60499500000" label="" />
+   </wave_markers>
+   <wvobject fp_name="/tb_fast_serializer/s_rst" type="logic">
+      <obj_property name="ElementShortName">s_rst</obj_property>
+      <obj_property name="ObjectShortName">s_rst</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_fast_serializer/s_clk" type="logic">
+      <obj_property name="ElementShortName">s_clk</obj_property>
+      <obj_property name="ObjectShortName">s_clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_fast_serializer/s_din" type="array">
+      <obj_property name="ElementShortName">s_din[3:0]</obj_property>
+      <obj_property name="ObjectShortName">s_din[3:0]</obj_property>
+      <obj_property name="Radix">BINARYRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_fast_serializer/s_dout" type="logic">
+      <obj_property name="ElementShortName">s_dout</obj_property>
+      <obj_property name="ObjectShortName">s_dout</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_fast_serializer/s_sclk_test" type="logic">
+      <obj_property name="ElementShortName">s_sclk_test</obj_property>
+      <obj_property name="ObjectShortName">s_sclk_test</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_fast_serializer/N" type="other">
+      <obj_property name="ElementShortName">N</obj_property>
+      <obj_property name="ObjectShortName">N</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_fast_serializer/c_CLK_PERIOD" type="other">
+      <obj_property name="ElementShortName">c_CLK_PERIOD</obj_property>
+      <obj_property name="ObjectShortName">c_CLK_PERIOD</obj_property>
+   </wvobject>
+   <wvobject type="divider" fp_name="divider21">
+      <obj_property name="label">PLL</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_fast_serializer/uut/pll_circuit/reset" type="logic">
+      <obj_property name="ElementShortName">reset</obj_property>
+      <obj_property name="ObjectShortName">reset</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_fast_serializer/uut/pll_circuit/clk_in1" type="logic">
+      <obj_property name="ElementShortName">clk_in1</obj_property>
+      <obj_property name="ObjectShortName">clk_in1</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_fast_serializer/uut/pll_circuit/clk_out1" type="logic">
+      <obj_property name="ElementShortName">clk_out1</obj_property>
+      <obj_property name="ObjectShortName">clk_out1</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_fast_serializer/uut/pll_circuit/reset" type="logic">
+      <obj_property name="ElementShortName">reset</obj_property>
+      <obj_property name="ObjectShortName">reset</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_fast_serializer/uut/pll_circuit/locked" type="logic">
+      <obj_property name="ElementShortName">locked</obj_property>
+      <obj_property name="ObjectShortName">locked</obj_property>
+   </wvobject>
+</wave_config>

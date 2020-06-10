@@ -38,6 +38,7 @@ architecture behavioral of tb_fast_serializer is
 	port(
 		-- input ports
 		clk       : in	std_logic;
+        rst       : in	std_logic;
 		din       : in	std_logic_vector(N-1 downto 0);
 		-- output ports
 		dout      : out	std_logic;
@@ -46,10 +47,11 @@ architecture behavioral of tb_fast_serializer is
     end component;
 
     -- clock period definition
-    constant c_CLK_PERIOD : time := 50 ns;
+    constant c_CLK_PERIOD : time := 100 ns; --10MHz system clock
+    -- constant c_CLK_PERIOD : time := 20 ns; --50MHz system clock
 
     -- input signals
-	signal s_rst_n	    : std_logic := '0';
+	signal s_rst	    : std_logic := '0';
 	signal s_clk		: std_logic := '0';
 	signal s_din		: std_logic_vector(N-1 downto 0) := (others => '0');
 
@@ -66,6 +68,7 @@ begin
 	port map(
 		-- input ports
 		clk       => s_clk,
+        rst       => s_rst,
 		din       => s_din,
 		-- output ports
 		dout      => s_dout,
@@ -81,14 +84,14 @@ begin
         wait for c_CLK_PERIOD/2;
     end process;
 
-    s_rst_n <=  '0' after 0 ns,
-                '1' after 100 ns;
+    s_rst   <=  '1' after 0 ns,
+                '0' after 100 ns;
 
 	-- stimulus process
     p_stim : process
     begin
         -- reset until now
-        wait for 100 ns;
+        wait for 60 us;
 
         -- add code here
         s_din <= "0110";
@@ -101,7 +104,7 @@ begin
         wait for c_CLK_PERIOD;
 
         -- nothing else to do..
-        wait for 10 * c_CLK_PERIOD;
+        wait for 4000 * c_CLK_PERIOD;
 
         report "[msg] Testbench end." severity failure ;
     end process;

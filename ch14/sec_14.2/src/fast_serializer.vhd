@@ -29,6 +29,7 @@ entity fast_serializer is
     port (
         -- input ports
         clk         : in std_logic;                         --10MHz system clock
+        rst         : in std_logic;
         din         : in std_logic_vector(N-1 downto 0);
         -- output ports
         dout        : out std_logic;
@@ -61,7 +62,7 @@ begin
     -----get sclk (with pll):------------
     pll_circuit: xilinx_pll
     port map(
-        reset       => '0',
+        reset       => rst,
         clk_in1     => clk,
         clk_out1    => sclk,
         locked      => open
@@ -71,7 +72,7 @@ begin
 
     -----build serializer:---------------
     process (sclk)
-    variable count: integer range 0 to N;
+        variable count: integer range 0 to N;
     begin
         if (sclk'event and sclk = '1') then
             count := count + 1;
@@ -82,7 +83,7 @@ begin
                 count := 0;
             end if;
 
-        dout <= internal(count); --continuous serial output
+            dout <= internal(count); --continuous serial output
         end if;
     end process;
 
